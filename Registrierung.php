@@ -57,7 +57,7 @@
         if (stmt) { element.style.border = "2px solid #4CAF50"; return true;}
         else { element.style.border = "2px solid red"; return false; }
       }
-
+      var fehler = get("fehler");
       // Prüft, ob alle Felder ausgefüllt sind
       get("vorname").addEventListener("input", function () { tests[0] = TestInputLength(get("vorname"), 0); });
       get("nachname").addEventListener("input", function () { tests[1] = TestInputLength(get("nachname"), 0); });
@@ -67,24 +67,39 @@
       // Prüft, ob die Email-Adresse gültig ist
       get("email").addEventListener("input", function () {
         tests[4] = TestInput(get("email"), checkEmail(get("email").value))
+
+        if (tests[4]) fehler.innerHTML = "";
+        else fehler.innerHTML = "Die Email-Adresse ist nicht gültig!";
       });
       // Prüft, ob das Passwort mindestens 8 Zeichen lang ist und ob es mindestens einen Groß- und Kleinbuchstaben, Sonderzeichen und Zahl beinhaltet
       get("password").addEventListener("input", function () {
         tests[5] = TestInput(get("password"), checkPassword(get("password").value))
+
+        if (tests[5]) fehler.innerHTML = "";
+        else fehler.innerHTML = "Das Passwort ist nicht sicher genug!";
       });
       // Prüft, ob das Passwort mit dem wiederholten Passwort übereinstimmt
       get("password2").addEventListener("input", function () {
         tests[6] = TestInput(get("password2"), get("password").value == get("password2").value)
+
+        if (tests[6]) fehler.innerHTML = "";
+        else fehler.innerHTML = "Die Passwörter stimmen nicht überein!";
       });
       // Prüft, ob das Geburtsdatum vor dem heutigen Datum liegt und ob es angegeben wurde
       get("gebdat").addEventListener("input", function () {
         tests[7] = TestInput(get("gebdat"), new Date(get("gebdat").value) < new Date());
+
+        if (tests[7]) fehler.innerHTML = "";
+        else fehler.innerHTML = "Das Geburtsdatum ist nicht gültig!";
       });
       // Prüft, ob die Hausnummer eine Zahl ist
       get("nummer").addEventListener("input", function () {
         if (isNaN(get("nummer").value))get("nummer").style.border = "2px solid red";
         else { get("nummer").style.border = "2px solid #4CAF50"; tests[8] = true; }
         tests[8] = TestInputLength(get("nummer"), 0);
+
+        if (tests[8]) fehler.innerHTML = "";
+        else fehler.innerHTML = "Die Hausnummer ist nicht gültig!";
       });
       // Prüft, ob die Postleitzahl 4 oder 5 Zeichen lang ist und ob es eine Zahl ist
       get("plz").addEventListener("input", function () {
@@ -94,6 +109,9 @@
           get("plz").style.border = "2px solid #4CAF50";
           tests[9] = true;
         } else get("plz").style.border = "2px solid red";
+
+        if (tests[9]) fehler.innerHTML = "";
+        else fehler.innerHTML = "Die Postleitzahl ist nicht gültig!";
       });
       // Prüft, ob alle Felder ausgefüllt sind und aktiviert den Button
       setInterval(function () {
