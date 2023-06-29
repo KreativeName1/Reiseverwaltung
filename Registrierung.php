@@ -4,6 +4,52 @@
     <link rel="stylesheet" type="text/css" href="stylesheets/main.css">
     <link rel="stylesheet" type="text/css" href="stylesheets/reset.css">
     <script defer src="Funktionen.js"></script>
+    <?php
+      // Prüft, ob die Registrierung abgeschickt wurde
+      if (isset($_POST['email'])) {
+        $vname = $_POST['vorname'];
+        $nname = $_POST['nachname'];
+        $password = $_POST['password'];
+        $gebdat = $_POST['gebdat'];
+        $email = $_POST['email'];
+        $strasse = $_POST['strasse'];
+        $hausnr = $_POST['nummer'];
+        $plz = $_POST['plz'];
+        $ort = $_POST['ort'];
+
+        $password = password_hash($password, PASSWORD_DEFAULT); // Passwort wird gehasht
+
+        // Verbindung zur Datenbank wird hergestellt mit PDO
+        try {
+        $pdo = new PDO('mysql:host=localhost;dbname=reiseverwaltung', 'root', '');
+        } catch (PDOException $e) {
+        print "Error!: " . $e->getMessage() . "<br/>";
+        die();
+        }
+        try {
+        // SQL-Statement wird ausgeführt
+        $sql = "INSERT INTO benutzer (vname, nname, passwort, gebdat, email, strasse, hausnr, plz, ort)
+        VALUES (:vname, :nname, :password, :gebdat, :email, :strasse, :nummer, :plz, :ort)";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([
+            ':vname' => $vname,
+            ':nname' => $nname,
+            ':password' => $password,
+            ':gebdat' => $gebdat,
+            ':email' => $email,
+            ':strasse' => $strasse,
+            ':hausnr' => $hausnr,
+            ':plz' => $plz,
+            ':ort' => $ort
+        ]);
+        // Weiterleitung zur Login-Seite
+        header('Location: Login.php');
+        } catch (PDOException $e) {
+        print "Error!: " . $e->getMessage() . "<br/>";
+        die();
+        }
+      }
+    ?>
   </head>
   <body>
     <header>
@@ -36,8 +82,9 @@
             <input type="text" id="ort" name="ort" placeholder="Ort" required/>
           </div>
           <button type="submit" id="btn" class="btn middle" disabled>Registrieren</button>
-          <a href="Login.php" class="middle" >Bereits Registriert?</a>
-        </form>
+          <!-- <input type="submit" name="submit" id="btn" class="btn middle" disabled value="Registrieren"> -->
+            <a href="Login.php" class="middle" >Bereits Registriert?</a>
+            </form>
       </div>
 </main>
 </html>
