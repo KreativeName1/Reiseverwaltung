@@ -4,6 +4,45 @@
     <link rel="stylesheet" type="text/css" href="stylesheets/main.css">
     <link rel="stylesheet" type="text/css" href="stylesheets/reset.css">
     <script defer src="Funktionen.js"></script>
+
+    <?php
+      if (isset($_POST['email'])) {
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+
+        // Verbindung zur Datenbank wird hergestellt mit PDO
+        try {
+          $pdo = new PDO('mysql:host=localhost;dbname=reiseverwaltung', 'root', '');
+        } catch (PDOException $e) {
+          print "Error!: " . $e->getMessage() . "<br/>";
+          die();
+        }
+        // check if email exists. if yes, get password from database. if no, show error message
+        try {
+          $sql = "SELECT passwort FROM benutzer WHERE email = :email";
+          $stmt = $pdo->prepare($sql);
+          $stmt->execute([
+            ':email' => $email
+          ]);
+          $result = $stmt->fetch(PDO::FETCH_ASSOC);
+          if ($result) {
+            $hash = $result['passwort'];
+            if (password_verify($password, $hash)) {
+              session_start();
+              $_SESSION['email'] = $email;
+              //TODO Weiterleitung zur nächsten Seite
+            } else {
+              echo "<script>document.getElementById('fehler').innerHTML = 'Passwort ist falsch!'</script>";
+            }
+          } else {
+            echo "<script>document.getElementById('fehler').innerHTML = 'Email ist falsch!'</script>";
+          }
+        } catch (PDOException $e) {
+          print "Error!: " . $e->getMessage() . "<br/>";
+          die();
+        }
+      }
+    ?>
   </head>
   <body>
     <header>
@@ -12,6 +51,7 @@
     <main class="c-vertical c-horizontal">
       <div class="box">
         <h1 class="center">Login</h1>
+        <p style="color:red;" id="fehler"></p>
         <form action="" method="post">
           <div class="flex">
           <input type="text" id="email" name="email" placeholder="Email" required/>
@@ -22,6 +62,10 @@
         </form>
       </div>
 </main>
+<footer>
+  <p>© 2023 Reiseverwaltung GmbH</p>
+  <p>© 2023 von Firmenname GmbH</p>
+</footer>
 </html>
   <script>
     // Elemente aus dem DOM holen

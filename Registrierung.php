@@ -87,6 +87,11 @@
             </form>
       </div>
 </main>
+<footer>
+  <p>© 2023 Reiseverwaltung GmbH</p>
+  <p>© 2023 von Firmenname GmbH</p>
+</footer>
+  </body>
 </html>
   <script>
     tests = [false, false, false, false, false, false, false, false, false, false];
@@ -165,5 +170,4 @@
         if (tests.every(function (e) { return e })) get("btn").disabled = false;
         else get("btn").disabled = true;
       }, 100);
-
   </script>

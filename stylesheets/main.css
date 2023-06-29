@@ -28,7 +28,9 @@
 :root {
   /* light green accent */
   --accent: #4CAF50;
+  --accent-dark: #303a31;
   --light: #FFFFFF;
+  --grey: #9E9E9E;
   --dark: #000000;
   --fa-primary: 'Roboto', sans-serif;
   --fa-secondary: 'Work Sans', sans-serif;
@@ -165,4 +167,19 @@ form>* {
   border: var(--arrow-size) solid transparent;
   border-top-color: var(--accent);
   transform-origin: top center;
+}
+
+footer {
+background-color: var(--accent-dark);
+position: absolute;
+bottom: 0;
+height: 3rem;
+width: 100%;
+
+display: flex;
+justify-content: center;
+align-items: center;
+gap: 5rem;
+
+color: var(--grey);
 }
