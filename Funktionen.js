@@ -3,8 +3,8 @@ function checkEmail(email) {
   return regex.test(email);
 }
 function checkPassword(password) {
-  const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8}$/;
-  // add requirement for special 
+  const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()])[a-zA-Z\d!?§.;,:-_|<>°^@#+~€$%^&*()]{8,}$/;
+  console.log(regex.test(password));
   return regex.test(password);
 }
 function isNumber(input) {
