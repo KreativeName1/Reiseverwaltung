@@ -145,7 +145,6 @@ form>* {
 
 [tooltip]::before {
   --translate-y: calc(-100% - var(--arrow-size));
-  
   content: attr(tooltip);
   color: white;
   padding: .5rem;

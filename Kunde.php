@@ -3,7 +3,7 @@
     <title>Kunde</title>
     <link rel="stylesheet" type="text/css" href="stylesheets/main.css">
     <link rel="stylesheet" type="text/css" href="stylesheets/reset.css">
-    <script defer src="Funktionen.js"></script>
+    <script defer src="scripts/Funktionen.js"></script>
 
     <?php
     // Php hier

@@ -7,6 +7,3 @@ function checkPassword(password) {
   console.log(regex.test(password));
   return regex.test(password);
 }
-function isNumber(input) {
-  return !isNaN(input);
-}

@@ -3,10 +3,12 @@
     <title>Registrierung</title>
     <link rel="stylesheet" type="text/css" href="stylesheets/main.css">
     <link rel="stylesheet" type="text/css" href="stylesheets/reset.css">
-    <script defer src="Funktionen.js"></script>
+    <script defer src="scripts/Funktionen.js"></script>
     <?php
       // Prüft, ob die Registrierung abgeschickt wurde
       if (isset($_POST['email'])) {
+
+        // Variablen werden mit den POST-Daten befüllt
         $vname = $_POST['vorname'];
         $nname = $_POST['nachname'];
         $password = $_POST['password'];
@@ -27,7 +29,7 @@
         die();
         }
         try {
-        // SQL-Statement wird ausgeführt
+        // SQL-Statement wird ausgeführt mit prepare und execute
         $sql = "INSERT INTO benutzer (vname, nname, passwort, gebdat, email, strasse, hausnr, plz, ort)
         VALUES (:vname, :nname, :password, :gebdat, :email, :strasse, :nummer, :plz, :ort)";
         $stmt = $pdo->prepare($sql);
@@ -67,7 +69,7 @@
           <div class="flex">
             <input type="password" id="password" name="password" placeholder="Password" required/>
             <input type="password" id="password2" name="password2" placeholder="Password wiederholen" required/>
-            <button type="button" tooltip="Das Passwort muss mindestens 8 Zeichen beinhalten mit mindestens einen Groß- und Kleinbuchstaben,Sonderzeichen und Zahl"class="invisible"><img class="icon" src="images/information.png"/></button>
+            <button type="button" tooltip="Das Passwort muss mindestens 8 Zeichen beinhalten mit mindestens einen Groß- und Kleinbuchstaben, Sonderzeichen und Zahl"class="invisible"><img class="icon" src="images/information.png"/></button>
           </div>
           <div class="flex">
             <input type="date" id="gebdat" name="gebdat" required/>
@@ -94,8 +96,16 @@
   </body>
 </html>
   <script>
+    // Boolean-Array, welches die Tests speichert
     tests = [false, false, false, false, false, false, false, false, false, false];
+
+    // Holt das Element mit der ID "btn" und speichert es in der Variable btn
+    var fehler = get("fehler");
+
     function get(id) { return document.getElementById(id) }
+
+    // Diese Funktion testet, ob das Feld die richtige Länge hat und setzt die Border entsprechend auf grün oder rot
+    // Gibt true oder false zurück
       function TestInputLength(element, len, direction=">") {
         if (direction = ">") {
           if (element.value.length > len) { element.style.border = "2px solid #4CAF50"; return true; }
@@ -105,11 +115,13 @@
           else { element.style.border = "2px solid red"; return false; }
         }
       }
+      // Diese Funktion testet, ob das if-Statement true oder false ist und setzt die Border entsprechend auf grün oder rot
+      // Gibt true oder false zurück
       function TestInput(element, stmt) {
         if (stmt) { element.style.border = "2px solid #4CAF50"; return true;}
         else { element.style.border = "2px solid red"; return false; }
       }
-      var fehler = get("fehler");
+
       // Prüft, ob alle Felder ausgefüllt sind
       get("vorname").addEventListener("input", function () { tests[0] = TestInputLength(get("vorname"), 0); });
       get("nachname").addEventListener("input", function () { tests[1] = TestInputLength(get("nachname"), 0); });
