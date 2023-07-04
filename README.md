@@ -9,6 +9,7 @@ Dateistruktur:
 ```
 Projekt/
 ├─ scripts/
+│  ├─ Funktionen.php
 ├─ stylesheets/
 │  ├─ reset.css
 │  ├─ main.css
@@ -37,7 +38,28 @@ Kunde
 ├─ hausnummer
 ├─ plz
 ├─ ort
-├─ geburtsdatum
+├─ gebdat
+
+Land
+├─ id
+├─ name
+
+Ziel
+├─ id
+├─ land_id
+├─ name
+├─ dauer
+├─ preis
+├─ abfahrtsdatum
+├─ abfahrtszeit
+├─ freiePlaetze
 
 Buchung
 ├─ id
+├─ kunde_id
+├─ ziel_id
+├─ datum
+├─ uhrzeit
+├─ anzahl
+├─ einstiegsort
+```

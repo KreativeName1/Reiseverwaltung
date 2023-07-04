@@ -14,6 +14,7 @@
       <h1>Reiseverwaltung</h1>
     </header>
     <main class="c-vertical c-horizontal">
+      
     </main>
     <footer>
       <p>© 2023 Reiseverwaltung GmbH</p>

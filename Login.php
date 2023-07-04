@@ -30,8 +30,8 @@
             $hash = $result['passwort'];
             if (password_verify($password, $hash)) {
               session_start();
-              $_SESSION['email'] = $email;
-              //TODO Weiterleitung zur nächsten Seite
+              $_SESSION['user'] = ['email' => $email, 'id' => $result['id'], 'vorname' => $result['vname'], 'nachname' => $result['nname'], 'gebdat' => $result['gebdat'], 'strasse' => $result['strasse'], 'hausnr' => $result['hausnr'], 'plz' => $result['plz'], 'ort' => $result['ort']];
+              header('Location: start.php');
             } else {
               echo "<script>document.getElementById('fehler').innerHTML = 'Passwort ist falsch!'</script>";
             }

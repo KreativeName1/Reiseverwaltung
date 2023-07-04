@@ -7,24 +7,6 @@
 /* Merriweather Sans */
 @import url('https://fonts.googleapis.com/css?family=Merriweather Sans');
 
-.falsch {
-  border: 2px solid red !important;
-}
-.richtig {
-  border: 2px solid #4CAF50 !important;
-}
-.icon {
-  width: 1rem;
-  height: 1rem;
-}
-
-.invisible {
-  cursor: pointer;
-  position: absolute;
-  right: -1.7rem;
-  border: none;
-  background-color:transparent;
-}
 :root {
   /* light green accent */
   --accent: #4CAF50;
@@ -36,6 +18,39 @@
   --fa-secondary: 'Work Sans', sans-serif;
   --fa-tertiary: 'Raleway', sans-serif;
   --fa-quaternary: 'Merriweather Sans', sans-serif;
+}
+
+.falsch {
+  border: 2px solid red !important;
+}
+.richtig {
+  border: 2px solid #4CAF50 !important;
+}
+.icon {
+  width: 1rem;
+  height: 1rem;
+}
+
+.center {
+  text-align: center;
+}
+.flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+.middle {
+  display:block;
+  margin-inline: auto;
+}
+
+.invisible {
+  cursor: pointer;
+  position: absolute;
+  right: -1.7rem;
+  border: none;
+  background-color:transparent;
 }
 h1,h2,h3,h4,h5,h6 {
   font-family: var(--fa-quaternary);
@@ -69,6 +84,20 @@ header {
   padding: 2rem;
   justify-content: space-between;
   align-items: center;
+}
+footer {
+  background-color: var(--accent-dark);
+  position: absolute;
+  bottom: 0;
+  height: 3rem;
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5rem;
+
+  color: var(--grey);
 }
 .c-horizontal {
   display: flex;
@@ -112,19 +141,6 @@ header {
 form>* {
   margin: 1rem 0;
 }
-.center {
-  text-align: center;
-}
-.flex {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-}
-.middle {
-  display:block;
-  margin-inline: auto;
-}
 
 
 [tooltip] {
@@ -166,19 +182,4 @@ form>* {
   border: var(--arrow-size) solid transparent;
   border-top-color: var(--accent);
   transform-origin: top center;
-}
-
-footer {
-background-color: var(--accent-dark);
-position: absolute;
-bottom: 0;
-height: 3rem;
-width: 100%;
-
-display: flex;
-justify-content: center;
-align-items: center;
-gap: 5rem;
-
-color: var(--grey);
 }
