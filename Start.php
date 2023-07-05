@@ -13,8 +13,9 @@
     <?php
     // Php hier
     $mydb = db_oeffnen("reiseverwaltung","root");
-    $sql = "SELECT DISTINCT id, DISTINCT name
+    $sql = "SELECT DISTINCT name, id
             From land
+
     
           ";
     $cursor=$mydb->query($sql);
@@ -27,7 +28,7 @@
 
       echo "<option value='$satz[id]' checked> $satz[name]</option>";
     }
-
+echo "<button type='submit' name='sub'>Weiter</button>";
 
 
 
