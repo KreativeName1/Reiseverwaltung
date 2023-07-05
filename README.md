@@ -1,8 +1,21 @@
-# Reiseverwaltung
-Ein Schulprojekt
-
-
 # Projekt Reiseverwaltung
+Ein Projekt von:
+- Sirac Orak
+- Sascha Dierl
+- Abdulrahman Hassoun
+
+In diesem Projekt kann man sihc in der Reiseverwaltung registrieren und einloggen. Der Benutzer kann sich das Land aussuchen und das Reiseziel.
+Er kann die Reise buchen und angeben, wie viele Personen mitfahren. Er kann auch angeben, wo er einsteigen möchte.
+
+Verwendete Sprachen:
+- ![HTML](https://img.shields.io/badge/-HTML-000000?style=flat&logo=HTML5)
+- ![CSS](https://img.shields.io/badge/-CSS-000000?style=flat&logo=CSS3)
+- ![PHP](https://img.shields.io/badge/-PHP-000000?style=flat&logo=PHP)
+- ![MySQL](https://img.shields.io/badge/-MySQL-000000?style=flat&logo=MySQL)
+- ![JavaScript](https://img.shields.io/badge/-JavaScript-000000?style=flat&logo=JavaScript)
+
+
+---
 
 Dateistruktur:
 
@@ -28,8 +41,8 @@ Zeige.php
 Datenbank:
 
 ```
-Kunde
-├─ id
+kunde
+├─ id (PK)
 ├─ vorname
 ├─ nachname
 ├─ email
@@ -40,13 +53,13 @@ Kunde
 ├─ ort
 ├─ gebdat
 
-Land
-├─ id
+land
+├─ id (PK)
 ├─ name
 
-Ziel
-├─ id
-├─ land_id
+ziel
+├─ id (PK)
+├─ land_id (FK)
 ├─ name
 ├─ dauer
 ├─ preis
@@ -54,12 +67,17 @@ Ziel
 ├─ abfahrtszeit
 ├─ freiePlaetze
 
-Buchung
-├─ id
-├─ kunde_id
-├─ ziel_id
+buchung
+├─ id (PK)
+├─ kunde_id (FK)
+├─ ziel_id (FK)
 ├─ datum
 ├─ uhrzeit
 ├─ anzahl
 ├─ einstiegsort
 ```
+
+---
+
+### TODO:
+- [ ] Email bei Registrierung überprüfen, ob es schon vorhanden ist

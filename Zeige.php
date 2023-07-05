@@ -7,6 +7,41 @@
 
     <?php
     // Php hier
+    $mydb = db_oeffnen("Datenbank","root");
+    $sql = "SELECT name, id
+            From ziel
+    
+          ";
+    $cursor=$mydb->query($sql);
+    $satz=$cursor->fetch(PDO::FETCH_ASSOC);
+    while($satz)
+    {
+    echo "<button type='radio' name='ziel' value='$satz[id]'>$satz[name]</botton>";
+    $satz=$cursor->fetch(PDO::FETCH_ASSOC);
+    }
+         
+				
+
+
+
+
+
+
+
+    function db_oeffnen($dbname,$benutzername)
+{
+	try 
+    {
+       $mydb =  new PDO("mysql:host=localhost;dbname=".$dbname.";charset=utf8",$benutzername);
+    } 
+    catch (PDOException $e)
+    {
+   
+      echo( "Error!: " . $e->getMessage() . "<br/>");
+	  die('das Programm wird beendet');
+	}
+	return $mydb;
+}
     ?>
   </head>
   <body>

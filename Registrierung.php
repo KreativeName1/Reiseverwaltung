@@ -23,34 +23,45 @@
 
         // Verbindung zur Datenbank wird hergestellt mit PDO
         try {
-        $pdo = new PDO('mysql:host=localhost;dbname=reiseverwaltung', 'root', '');
+          $pdo = new PDO('mysql:host=localhost;dbname=reiseverwaltung', 'root', '');
         } catch (PDOException $e) {
-        print "Error!: " . $e->getMessage() . "<br/>";
-        die();
+          print "Verbindungsfehler!: " . $e->getMessage() . "<br/>";
+          die();
         }
         try {
-        // SQL-Statement wird ausgeführt mit prepare und execute
-        $sql = "INSERT INTO benutzer (vname, nname, passwort, gebdat, email, strasse, hausnr, plz, ort)
-        VALUES (:vname, :nname, :password, :gebdat, :email, :strasse, :nummer, :plz, :ort)";
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute([
-            ':vname' => $vname,
-            ':nname' => $nname,
-            ':password' => $password,
-            ':gebdat' => $gebdat,
-            ':email' => $email,
-            ':strasse' => $strasse,
-            ':hausnr' => $hausnr,
-            ':plz' => $plz,
-            ':ort' => $ort
-        ]);
+          // check if email already exists
+          $sql = "SELECT email FROM kunde WHERE email = :email";
+          $stmt = $pdo->prepare($sql);
+          $stmt->execute([
+            ':email' => $email
+          ]);
+          $result = $stmt->fetch();
+          if ($result) {
+            echo "<script>document.getElementById('fehler').innerHTML = 'Email Adresse bereits vergeben!'</script>";
+          } else {
+            // SQL-Statement wird ausgeführt mit prepare und execute
+            $sql = "INSERT INTO kunde (vorname, nachname, passwort, gebdat, email, strasse, hausnummer, plz, ort)
+            VALUES (:vname, :nname, :password, :gebdat, :email, :strasse, :hausnr, :plz, :ort)";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute([
+              ':vname' => $vname,
+              ':nname' => $nname,
+              ':password' => $password,
+              ':gebdat' => $gebdat,
+              ':email' => $email,
+              ':strasse' => $strasse,
+              ':hausnr' => $hausnr,
+              ':plz' => $plz,
+              ':ort' => $ort
+            ]);
+          }
         // Weiterleitung zur Login-Seite
         header('Location: Login.php');
         } catch (PDOException $e) {
-        print "Error!: " . $e->getMessage() . "<br/>";
+        print "Befehl-Fehler!: " . $e->getMessage() . "<br/>";
         die();
-        }
       }
+    }
     ?>
   </head>
   <body>

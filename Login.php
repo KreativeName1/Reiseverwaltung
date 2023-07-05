@@ -4,46 +4,6 @@
     <link rel="stylesheet" type="text/css" href="stylesheets/main.css">
     <link rel="stylesheet" type="text/css" href="stylesheets/reset.css">
     <script defer src="scripts/Funktionen.js"></script>
-
-    <?php
-      if (isset($_POST['email'])) {
-
-        $email = $_POST['email'];
-        $password = $_POST['password'];
-
-        // Verbindung zur Datenbank wird hergestellt mit PDO
-        try {
-          $pdo = new PDO('mysql:host=localhost;dbname=reiseverwaltung', 'root', '');
-        } catch (PDOException $e) {
-          print "Error!: " . $e->getMessage() . "<br/>";
-          die();
-        }
-        // check if email exists. if yes, get password from database. if no, show error message
-        try {
-          $sql = "SELECT passwort FROM benutzer WHERE email = :email";
-          $stmt = $pdo->prepare($sql);
-          $stmt->execute([
-            ':email' => $email
-          ]);
-          $result = $stmt->fetch(PDO::FETCH_ASSOC);
-          if ($result) {
-            $hash = $result['passwort'];
-            if (password_verify($password, $hash)) {
-              session_start();
-              $_SESSION['user'] = ['email' => $email, 'id' => $result['id'], 'vorname' => $result['vname'], 'nachname' => $result['nname'], 'gebdat' => $result['gebdat'], 'strasse' => $result['strasse'], 'hausnr' => $result['hausnr'], 'plz' => $result['plz'], 'ort' => $result['ort']];
-              header('Location: start.php');
-            } else {
-              echo "<script>document.getElementById('fehler').innerHTML = 'Passwort ist falsch!'</script>";
-            }
-          } else {
-            echo "<script>document.getElementById('fehler').innerHTML = 'Email ist falsch!'</script>";
-          }
-        } catch (PDOException $e) {
-          print "Error!: " . $e->getMessage() . "<br/>";
-          die();
-        }
-      }
-    ?>
   </head>
   <body>
     <header>
@@ -81,12 +41,12 @@
     } else {
       email.style.border = "2px solid red";
     }
-    if (password.value.length > 8) {
+    if (password.value.length >= 8) {
       password.style.border = "2px solid #4CAF50";
     } else {
       password.style.border = "2px solid red";
     }
-    if (checkEmail(email.value) && password.value.length > 8) {
+    if (checkEmail(email.value) && password.value.length >= 8) {
       btn.disabled = false;
     } else {
       btn.disabled = true;
@@ -97,3 +57,47 @@
   email.addEventListener("input", handleInput);
   password.addEventListener("input", handleInput);
   </script>
+  <?php
+      if (isset($_POST['email']) && isset($_POST['password'])) {
+
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+
+        // Verbindung zur Datenbank wird hergestellt mit PDO
+        try {
+          $pdo = new PDO('mysql:host=localhost;dbname=reiseverwaltung', 'root', '');
+        } catch (PDOException $e) {
+          print "Error!: " . $e->getMessage() . "<br/>";
+          die();
+        }
+        // check if email exists. if yes, get password from database. if no, show error message
+        try {
+          $sql = "SELECT passwort FROM kunde WHERE email = :email";
+          $stmt = $pdo->prepare($sql);
+          $stmt->execute([
+            ':email' => $email
+          ]);
+          // returns the password from the database, if the email exists.
+          // if the email does not exist, it returns false
+          $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            var_dump($result['passwort']);
+          // if the email exists, check if the password is correct
+          if ($result) {
+            // if the password is correct, redirect to the index page
+            if (password_verify($password, $result['passwort'])) {
+              header('Location: start.php');
+            } else {
+              // if the password is incorrect, show error message
+              echo "<script>document.getElementById('fehler').innerHTML = 'Passwort ist falsch!'</script>";
+            }
+          } else {
+            // if the email does not exist, show error message
+            echo "<script>document.getElementById('fehler').innerHTML = 'Email existiert nicht!'</script>";
+          }
+
+        } catch (PDOException $e) {
+          print "Error!: " . $e->getMessage() . "<br/>";
+          die();
+        }
+      }
+    ?>
