@@ -161,13 +161,7 @@ if (isset($_POST['email'])) {
   $pdo = db_oeffnen();
 
   // Prüft, ob die Email bereits vorhanden ist
-  $ergebnis = runQuery(
-    $pdo,
-    "SELECT email FROM kunde WHERE email = :email",
-    [
-      ':email' => $email
-    ]
-  );
+  $ergebnis = runQuery($pdo, "SELECT email FROM kunde WHERE email = :email", [':email' => $email]);
   if (!is_bool($ergebnis)) {
     die("<script> confirm('Die Email-Adresse ist bereits vergeben!'); window.history.back(); </script>");
   }
