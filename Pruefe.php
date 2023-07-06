@@ -4,9 +4,9 @@
     <link rel="stylesheet" type="text/css" href="stylesheets/main.css">
     <link rel="stylesheet" type="text/css" href="stylesheets/reset.css">
     <script defer src="scripts/Funktionen.js"></script>
-
     <?php
-    // Php hier
+    session_start();
+    if (!isset($_SESSION['user'])) header("Location: login.php");
     ?>
   </head>
   <body>
@@ -17,7 +17,7 @@
     </main>
     <footer>
       <p>© 2023 Reiseverwaltung GmbH</p>
-      <p>© 2023 von Firmenname GmbH</p>
+      <p>© 2023 von webNview GmbH</p>
     </footer>
   </body>
 </html>

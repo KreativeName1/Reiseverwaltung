@@ -6,7 +6,7 @@
 @import url('https://fonts.googleapis.com/css?family=Raleway');
 /* Merriweather Sans */
 @import url('https://fonts.googleapis.com/css?family=Merriweather Sans');
-
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 :root {
   /* light green accent */
   --accent: #4CAF50;
@@ -18,6 +18,7 @@
   --fa-secondary: 'Work Sans', sans-serif;
   --fa-tertiary: 'Raleway', sans-serif;
   --fa-quaternary: 'Merriweather Sans', sans-serif;
+  --fa-quinary: 'Poppins', sans-serif;
 }
 
 .falsch {
@@ -65,8 +66,9 @@ button[disabled] {
   cursor: not-allowed;
   opacity: 0.5;
 }
-input:is([type="text"], [type="number"], [type="password"], [type="date"]), textarea, select {
+input:is([type="text"], [type="number"], [type="password"], [type="date"]), textarea, select, option {
   width: 15rem;
+  background-color: var(--light);
   border: 2px solid black;
   font-family: var(--fa-quaternary);
   border-radius: 10px;
@@ -182,4 +184,22 @@ form>* {
   border: var(--arrow-size) solid transparent;
   border-top-color: var(--accent);
   transform-origin: top center;
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-.5rem);
+  }
+  50% {
+    transform: translateX(0);
+  }
+  75% {
+    transform: translateX(.5rem);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }

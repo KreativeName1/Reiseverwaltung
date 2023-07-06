@@ -4,54 +4,43 @@
     <link rel="stylesheet" type="text/css" href="stylesheets/main.css">
     <link rel="stylesheet" type="text/css" href="stylesheets/reset.css">
     <script defer src="scripts/Funktionen.js"></script>
+    <?php
+    session_start();
+    if (!isset($_SESSION['user'])) header("Location: login.php");
+    include "Funktionen.php";
+    ?>
   </head>
   <body>
     <header>
       <h1>Reiseverwaltung</h1>
     </header>
     <main class="c-vertical c-horizontal">
+      <form class="box" action="Buche.php" method="post">
+        <h1 class="center">Land-Wahl</h1>
     <?php
-    // Php hier
-    $mydb = db_oeffnen("reiseverwaltung","root");
+    $mydb = db_oeffnen();
     $sql = "SELECT DISTINCT name, id
             From land
+            Order by name ASC";
 
-    
-          ";
     $cursor=$mydb->query($sql);
     $satz=$cursor->fetch(PDO::FETCH_ASSOC);
     echo "<select name='land' size='1'>";
-    echo "<option value='$satz[id]' checked> $satz[name]</option>";
     while ($satz)
     {
-      $satz=$cursor->fetch(PDO::FETCH_ASSOC);
-
       echo "<option value='$satz[id]' checked> $satz[name]</option>";
+      $satz=$cursor->fetch(PDO::FETCH_ASSOC);
     }
-echo "<button type='submit' name='sub'>Weiter</button>";
+    echo "</select>";
+    echo "<button type='submit' class='btn middle' name='sub'>Weiter</button>";
 
 
-
-    function db_oeffnen($dbname,$benutzername)
-{
-	try 
-    {
-       $mydb =  new PDO("mysql:host=localhost;dbname=".$dbname.";charset=utf8",$benutzername);
-    } 
-    catch (PDOException $e)
-    {
-   
-      echo( "Error!: " . $e->getMessage() . "<br/>");
-	  die('das Programm wird beendet');
-	}
-	return $mydb;
-}
-    
     ?>
+    </form>
     </main>
     <footer>
       <p>© 2023 Reiseverwaltung GmbH</p>
-      <p>© 2023 von Firmenname GmbH</p>
+      <p>© 2023 von webNview GmbH</p>
     </footer>
   </body>
 </html>

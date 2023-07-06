@@ -81,3 +81,4 @@ buchung
 
 ### TODO:
 - [ ] Email bei Registrierung überprüfen, ob es schon vorhanden ist
+- [ ] 
