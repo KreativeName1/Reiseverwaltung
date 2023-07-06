@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>Zeige</title>
+    <title>Start</title>
     <link rel="stylesheet" type="text/css" href="stylesheets/main.css">
     <link rel="stylesheet" type="text/css" href="stylesheets/reset.css">
     <script defer src="scripts/Funktionen.js"></script>
@@ -9,21 +9,6 @@
     if (!isset($_SESSION['user'])) header("Location: login.php");
     include "Funktionen.php";
     ?>
-    <?php
-    // Php hier
-    $mydb = db_oeffnen();
-    $sql = "SELECT name, id
-            From ziel
-            Where CurrentDate < abfahrtsdatum
-          ";
-    $cursor=$mydb->query($sql);
-    $satz=$cursor->fetch(PDO::FETCH_ASSOC);
-    while($satz)
-    {
-    echo "<button type='radio' name='ziel' value='$satz[id]'>$satz[name]</button>";
-    $satz=$cursor->fetch(PDO::FETCH_ASSOC);
-    }
-    ?>
   </head>
   <body>
     <header>
@@ -31,6 +16,29 @@
       <a href="Ausloggen.php" class="btn">Ausloggen</a>
     </header>
     <main class="c-vertical c-horizontal">
+      <form class="box center" action="Buche.php" method="post">
+        <h1>Land-Wahl</h1>
+        <p>Wählen Sie das Land aus, in das Sie reisen möchten.</p>
+    <?php
+    $mydb = db_oeffnen();
+    $sql = "SELECT DISTINCT name, id
+            From land
+            Order by name ASC";
+
+    $cursor=$mydb->query($sql);
+    $satz=$cursor->fetch(PDO::FETCH_ASSOC);
+    echo "<select name='land' size='1'>";
+    while ($satz)
+    {
+      echo "<option value='$satz[id]' checked> $satz[name]</option>";
+      $satz=$cursor->fetch(PDO::FETCH_ASSOC);
+    }
+    echo "</select>";
+    echo "<button type='submit' class='btn middle' name='sub'>Weiter</button>";
+
+
+    ?>
+    </form>
     </main>
     <footer>
       <p>© 2023 Reiseverwaltung GmbH</p>

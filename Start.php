@@ -13,29 +13,32 @@
   <body>
     <header>
       <h1>Reiseverwaltung</h1>
+      <a href="Ausloggen.php" class="btn">Ausloggen</a>
     </header>
     <main class="c-vertical c-horizontal">
-      <form class="box" action="Buche.php" method="post">
-        <h1 class="center">Land-Wahl</h1>
-    <?php
-    $mydb = db_oeffnen();
-    $sql = "SELECT DISTINCT name, id
-            From land
-            Order by name ASC";
+      <form class="box center" action="Buche.php" method="post">
+        <h1>Land-Wahl</h1>
+        <p>Wählen Sie das Land aus, in das Sie reisen möchten.</p>
 
-    $cursor=$mydb->query($sql);
-    $satz=$cursor->fetch(PDO::FETCH_ASSOC);
-    echo "<select name='land' size='1'>";
-    while ($satz)
-    {
-      echo "<option value='$satz[id]' checked> $satz[name]</option>";
-      $satz=$cursor->fetch(PDO::FETCH_ASSOC);
-    }
-    echo "</select>";
-    echo "<button type='submit' class='btn middle' name='sub'>Weiter</button>";
+        <div class="land-box">
+      <?php
+      $mydb = db_oeffnen();
+      $sql = "SELECT DISTINCT name, id, code
+      From land
+      Order by name ASC";
 
-
+      $cursor=$mydb->query($sql);
+      while ( $satz=$cursor->fetch(PDO::FETCH_ASSOC))
+      {
+        echo "
+        <a class='land' href='Buche.php?land=$satz[code]'>
+          <img  src='https://hatscripts.github.io/circle-flags/flags/$satz[code].svg' width='48'>
+          <p>$satz[name]</p>
+        </a>
+        ";
+      }
     ?>
+    </div>
     </form>
     </main>
     <footer>

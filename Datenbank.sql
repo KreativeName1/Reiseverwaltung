@@ -19,6 +19,7 @@ CREATE TABLE `reiseverwaltung`.`kunde` (
 CREATE TABLE `reiseverwaltung`.`land` (
   `id` int(40) NOT NULL Auto_Increment,
   `name` varchar(40) NOT NULL,
+  `code` char(2) NOT NULL,
   PRIMARY KEY (`id`)
 );
 
@@ -48,19 +49,23 @@ CREATE TABLE `reiseverwaltung`.`buchung` (
   FOREIGN KEY (`ziel_id`) REFERENCES `ziel`(`id`)
 );
 
-INSERT INTO `reiseverwaltung`.`land` (`name`) VALUES
-('Deutschland'),
-('Frankreich'),
-('Spanien'),
-('Italien'),
-('Österreich'),
-('Schweiz'),
-('Niederlande'),
-('Belgien'),
-('Luxemburg'),
-('Dänemark'),
-('Polen'),
-('Tschechien');
+INSERT INTO `reiseverwaltung`.`land` (`name`, `code`) VALUES
+('Deutschland', 'de'),
+('Frankreich', 'fr'),
+('Spanien', 'es'),
+('Italien', 'it'),
+('Österreich', 'at'),
+('Schweiz', 'ch'),
+('Niederlande', 'nl'),
+('Belgien', 'be'),
+('Luxemburg', 'lu'),
+('Dänemark', 'dk'),
+('Polen', 'pl'),
+('Tschechien', 'cz'),
+('Portugal', 'pt');
+-- Password ist "123456789"
+INSERT INTO `reiseverwaltung`.`kunde` (vorname, nachname, email, passwort, strasse, hausnummer, plz, ort, gebdat) VALUES
+('Vorname', 'Nachname', 'test@mail.com', '$2y$10$aBJkWB0i7PBXaQivfhsYheM9JV/OfgtnrweblERBLuTvn7J6q6aEi', 'Strasse', 1, '12345', 'Ort', '2000-01-01');
 INSERT INTO `reiseverwaltung`.`ziel` (land_id, name, dauer, preis, abfahrtsdatum, abfahrtszeit, freieplaetze) VALUES
 (1, 'Berlin', 5, 500, '2023-08-10', '10:00:00', 10),
 (2, 'Paris', 7, 800, '2023-09-15', '14:30:00', 5),

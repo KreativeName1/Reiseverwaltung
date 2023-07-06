@@ -1,26 +1,78 @@
 /* Worksans */
-@import url('https://fonts.googleapis.com/css?family=Work+Sans:400,600');
+/* @import url('https://fonts.googleapis.com/css?family=Work+Sans:400,600'); */
 /* Roboto */
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
+/* Nunito */
+@import url('https://fonts.googleapis.com/css?family=Nunito');
 /* Raleway */
-@import url('https://fonts.googleapis.com/css?family=Raleway');
+/* @import url('https://fonts.googleapis.com/css?family=Raleway'); */
 /* Merriweather Sans */
-@import url('https://fonts.googleapis.com/css?family=Merriweather Sans');
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
-:root {
-  /* light green accent */
-  --accent: #4CAF50;
-  --accent-dark: #303a31;
-  --light: #FFFFFF;
-  --grey: #9E9E9E;
-  --dark: #000000;
-  --fa-primary: 'Roboto', sans-serif;
-  --fa-secondary: 'Work Sans', sans-serif;
-  --fa-tertiary: 'Raleway', sans-serif;
-  --fa-quaternary: 'Merriweather Sans', sans-serif;
-  --fa-quinary: 'Poppins', sans-serif;
-}
+/* @import url('https://fonts.googleapis.com/css?family=Merriweather Sans'); */
+/* @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap'); */
 
+
+
+
+:root {
+  --accent1: #35b36c;
+  --accent2: #7dd9d2;
+  --accent3: #3ec69b;
+  --accent4: #62d076;
+  --accent5: #5ecd56;
+
+  /* another green accent
+  --accent1: #abd648;
+  --accent2: #9dc837;
+  --accent3: #7f9d39;
+  --accent4: #505e311;
+  --accent5: #26291e;
+
+  /* purple accent */
+  /* --accent2: #debbf4;
+  --accent1: #eb84df;
+  --accent3: #d66ae7;
+  --accent4: #ad88ec;
+  --accent5: #4d39df;
+  */
+  --light: #FFFFFF;
+  --grey: #656565;
+  --dark: #000000;
+  --background: #F5F5F5;
+  --ff-header: 'Roboto', sans-serif;
+  --ff-body: 'Nunito', sans-serif;
+  --fw-bold: 700;
+  --fw-normal: 500;
+  --fw-light: 300;
+}
+.land:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  transition: 0.2s;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+.land {
+  position: relative;
+}
+.land p {
+  display: none;
+}
+.land:hover p {
+  position: absolute;
+  bottom: -1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: block;
+}
+.land-box {
+  display: grid;
+  margin-bottom: 2rem;
+  width: 30rem;
+  gap: 1rem;
+  row-gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(45px, 1fr));
+}
 .falsch {
   border: 2px solid red !important;
 }
@@ -54,23 +106,29 @@
   background-color:transparent;
 }
 h1,h2,h3,h4,h5,h6 {
-  font-family: var(--fa-quaternary);
+  font-family: var(--ff-header);
+  font-weight: var(--fw-bold);
   font-weight: bold;
 }
 p,span,i,a,ul,li,ol {
-  font-family: var(--fa-primary);
-  font-weight: 400;
+  font-family: var(--ff-body);
+  font-weight: var(--fw-normal);
   width: fit-content;
+  color: var(--dark);
 }
 button[disabled] {
   cursor: not-allowed;
   opacity: 0.5;
 }
+button[disabled]:hover {
+  animation: shake 0.2s;
+}
 input:is([type="text"], [type="number"], [type="password"], [type="date"]), textarea, select, option {
+  font-weight: var(--fw-bold);
   width: 15rem;
   background-color: var(--light);
   border: 2px solid black;
-  font-family: var(--fa-quaternary);
+  font-family: var(--ff-body);
   border-radius: 10px;
   padding: .5rem 1rem;
   transition: 0.2s;
@@ -79,19 +137,19 @@ input:focus, textarea:focus, select:focus {
   outline: none;
 }
 header {
-  background-color: var(--accent);
+  background-color: var(--accent1);
   color: var(--light);
-  height: 5rem;
+  height: 3rem;
   display: flex;
   padding: 2rem;
   justify-content: space-between;
   align-items: center;
 }
 footer {
-  background-color: var(--accent-dark);
+  background-color: var(--accent1);
   position: absolute;
   bottom: 0;
-  height: 3rem;
+  height: 2.5rem;
   width: 100%;
 
   display: flex;
@@ -113,7 +171,7 @@ footer {
   justify-content: center;
 }
 .box {
-  background-color: var(--light);
+  background-color: var(--accent-bg);
   color: var(--dark);
   width: fit-content;
   padding: 2rem;
@@ -122,18 +180,19 @@ footer {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 .btn {
-  background-color: var(--accent);
-  font-family: var(--fa-quaternary);
+  background-color: var(--accent3);
+  font-family: var(--ff-body);
+  font-weight: var(--fw-bold);
   color: var(--light);
   padding: .5rem 1.5rem;
   border-radius: 10px;
   border: none;
+  text-decoration: none;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   transition: 0.2s;
 }
 .btn:hover {
-  background-color: var(--light);
-  color: var(--accent);
+  background-color: var(--accent1);
   transition: 0.2s;
 }
 .box>form {
@@ -146,7 +205,7 @@ form>* {
 
 
 [tooltip] {
-  font-family: var(--fa-primary);
+  font-family: var(--ff-body);
 }
 /* Nicht selber geschrieben */
 [tooltip]::before,
@@ -188,18 +247,36 @@ form>* {
 
 @keyframes shake {
   0% {
-    transform: translateX(0);
+    transform: translate(1px, 1px) rotate(0deg);
   }
-  25% {
-    transform: translateX(-.5rem);
+  10% {
+    transform: translate(-1px, -2px) rotate(-1deg);
+  }
+  20% {
+    transform: translate(-3px, 0px) rotate(1deg);
+  }
+  30% {
+    transform: translate(3px, 2px) rotate(0deg);
+  }
+  40% {
+    transform: translate(1px, -1px) rotate(1deg);
   }
   50% {
-    transform: translateX(0);
+    transform: translate(-1px, 2px) rotate(-1deg);
   }
-  75% {
-    transform: translateX(.5rem);
+  60% {
+    transform: translate(-3px, 1px) rotate(0deg);
+  }
+  70% {
+    transform: translate(3px, 1px) rotate(-1deg);
+  }
+  80% {
+    transform: translate(-1px, -1px) rotate(1deg);
+  }
+  90% {
+    transform: translate(1px, 2px) rotate(0deg);
   }
   100% {
-    transform: translateX(0);
+    transform: translate(1px, -2px) rotate(-1deg);
   }
 }

@@ -15,6 +15,7 @@
   <body>
     <header>
       <h1>Reiseverwaltung</h1>
+      <a href="Ausloggen.php" class="btn">Ausloggen</a>
     </header>
     <main class="c-vertical c-horizontal">
     </main>
