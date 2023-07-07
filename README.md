@@ -4,8 +4,9 @@ Ein Projekt von:
 - Sascha Dierl
 - Abdulrahman Hassoun
 
-In diesem Projekt kann man sihc in der Reiseverwaltung registrieren und einloggen. Der Benutzer kann sich das Land aussuchen und das Reiseziel.
-Er kann die Reise buchen und angeben, wie viele Personen mitfahren. Er kann auch angeben, wo er einsteigen möchte.
+In diesem Projekt kann man sich in der Reiseverwaltung registrieren und einloggen. Als erstet wird das Land ausgesucht und dann das Reiseziel.
+Man kann die Reise buchen und angeben, wie viele Personen mitfahren. Er kann auch angeben, wo er einsteigen möchte.
+Man hat auch die möglichkeit, alle bisherigen und zukünftigen Buchungen anzuschauen.
 
 Verwendete Sprachen:
 - ![HTML](https://img.shields.io/badge/-HTML-000000?style=flat&logo=HTML5)
