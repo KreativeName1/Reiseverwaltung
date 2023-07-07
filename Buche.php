@@ -27,9 +27,10 @@
         echo "<p>Sie haben $satz[name] ausgewählt.</p>";
         echo "<img src='https://hatscripts.github.io/circle-flags/flags/$satz[code].svg' width='48'>";
         try {
-          $sql = "SELECT * FROM land_ziel WHERE land = '$code' AND freieplaetze > 0 AND abfahrtsdatum > CURDATE() OR (abfahrtsdatum = CURDATE() AND abfahrtszeit > CURTIME())";
+          $sql = "SELECT *, DATE_FORMAT(abfahrtsdatum, '%d.%m.%Y') as abfahrtsdatum, TIME_FORMAT(abfahrtszeit, '%H:%i') as abfahrtszeit FROM land_ziel WHERE land = '$code' AND freieplaetze > 0 AND abfahrtsdatum > CURDATE() OR (abfahrtsdatum = CURDATE() AND abfahrtszeit > CURTIME())";
           $cursor=$db->query($sql);
           echo "<table>";
+          echo "<tr><th>Ziel</th><th>Abfahrtsdatum</th><th>Abfahrtszeit</th><th>Freie Plätze</th></tr>";
           while ($ergebnis=$cursor->fetch(PDO::FETCH_ASSOC)) {
             echo "<tr>";
             echo "<td><a href='Buche.php?land=$satz[code]&ziel=$ergebnis[ziel]'>$ergebnis[ziel]</a></td>";

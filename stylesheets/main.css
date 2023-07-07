@@ -136,6 +136,33 @@ input:is([type="text"], [type="number"], [type="password"], [type="date"]), text
 input:focus, textarea:focus, select:focus {
   outline: none;
 }
+
+table {
+  border-collapse: collapse;
+  font-family: var(--ff-body);
+  margin-bottom: 2rem;
+  width: 50%;
+  min-width: 35rem;
+  border: 2px solid var(--accent1);
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+th {
+  background-color: #4CAF50;
+  color: white;
+  font-family: var(--ff-header);
+}
+tr:hover, tr:nth-child(even):hover {
+  background-color: var(--accent3)
+}
+
+
 header {
   background-color: var(--accent1);
   color: var(--light);
