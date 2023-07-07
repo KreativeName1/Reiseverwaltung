@@ -16,6 +16,7 @@
       <a href="Ausloggen.php" class="btn">Ausloggen</a>
     </header>
     <main class="c-vertical c-horizontal">
+      <h1 class="center">Ziel-Wahl</h1>
       <?php
       // Der Befehl zum Ziel-Datensatz zu holen:
         $code = $_GET['land'];
@@ -25,7 +26,7 @@
         $satz=$cursor->fetch(PDO::FETCH_ASSOC);
 
         echo "<p>Sie haben $satz[name] ausgewählt.</p>";
-        echo "<img src='https://hatscripts.github.io/circle-flags/flags/$satz[code].svg' width='48'>";
+        echo "<p style='margin-bottom: 1rem'>Bitte wählen Sie ein Ziel aus:</p>";
         try {
           $sql = "SELECT *, DATE_FORMAT(abfahrtsdatum, '%d.%m.%Y') as abfahrtsdatum, TIME_FORMAT(abfahrtszeit, '%H:%i') as abfahrtszeit FROM land_ziel WHERE land = '$code' AND freieplaetze > 0 AND abfahrtsdatum > CURDATE() OR (abfahrtsdatum = CURDATE() AND abfahrtszeit > CURTIME())";
           $cursor=$db->query($sql);
@@ -38,8 +39,9 @@
             echo "<td>$ergebnis[abfahrtszeit]</td>";
             echo "<td>$ergebnis[freieplaetze]</td>";
             echo "</tr>";
-        }
-        echo "</table>";
+          }
+          echo "</table>";
+          echo "<img src='https://hatscripts.github.io/circle-flags/flags/$satz[code].svg' width='256'>";
         } catch (PDOException $e) {
           die("Befehl-Fehler!: " . $e->getMessage() . "<br/>");
         }
