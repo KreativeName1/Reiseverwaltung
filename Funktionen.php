@@ -18,9 +18,13 @@ function runQuery($db, $sql, $param = null)
 {
   try
   {
+    if ($param == null)
+      $stmt = $db->query($sql);
+    else {
     $stmt = $db->prepare($sql);
     $stmt->execute($param);
-    $result = $stmt->fetchAll();
+    }
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
   }
   catch (PDOException $e)
   {

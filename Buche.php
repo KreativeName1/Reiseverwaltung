@@ -17,13 +17,31 @@
     </header>
     <main class="c-vertical c-horizontal">
       <?php
+      // Der Befehl zum Ziel-Datensatz zu holen:
         $code = $_GET['land'];
-        $mydb = db_oeffnen();
+        $db = db_oeffnen();
         $sql = "SELECT DISTINCT name, id, code FROM land WHERE code = '$code'";
-        $cursor=$mydb->query($sql);
+        $cursor=$db->query($sql);
         $satz=$cursor->fetch(PDO::FETCH_ASSOC);
+
         echo "<p>Sie haben $satz[name] ausgewählt.</p>";
         echo "<img src='https://hatscripts.github.io/circle-flags/flags/$satz[code].svg' width='48'>";
+        try {
+          $sql = "SELECT * FROM land_ziel WHERE land = '$code' AND freieplaetze > 0 AND abfahrtsdatum > CURDATE() OR (abfahrtsdatum = CURDATE() AND abfahrtszeit > CURTIME())";
+          $cursor=$db->query($sql);
+          echo "<table>";
+          while ($ergebnis=$cursor->fetch(PDO::FETCH_ASSOC)) {
+            echo "<tr>";
+            echo "<td><a href='Buche.php?land=$satz[code]&ziel=$ergebnis[ziel]'>$ergebnis[ziel]</a></td>";
+            echo "<td>$ergebnis[abfahrtsdatum]</td>";
+            echo "<td>$ergebnis[abfahrtszeit]</td>";
+            echo "<td>$ergebnis[freieplaetze]</td>";
+            echo "</tr>";
+        }
+        echo "</table>";
+        } catch (PDOException $e) {
+          die("Befehl-Fehler!: " . $e->getMessage() . "<br/>");
+        }
       ?>
     </main>
     <footer>
