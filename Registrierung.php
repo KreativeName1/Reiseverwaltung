@@ -36,7 +36,6 @@
             <input type="text" id="ort" name="ort" placeholder="Ort" required/>
           </div>
           <button type="submit" id="btn" class="btn middle" disabled>Registrieren</button>
-          <!-- <input type="submit" name="submit" id="btn" class="btn middle" disabled value="Registrieren"> -->
             <a href="Login.php" class="middle" >Bereits Registriert?</a>
             </form>
       </div>
@@ -51,7 +50,6 @@
 // Boolean-Array, welches die Tests speichert
 tests = [false, false, false, false, false, false, false, false, false, false];
 
-// Holt das Element mit der ID "btn" und speichert es in der Variable btn
 var fehler = get("fehler");
 
 // Prüft, ob alle Felder ausgefüllt sind

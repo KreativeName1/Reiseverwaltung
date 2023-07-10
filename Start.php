@@ -16,7 +16,7 @@
       <a href="Ausloggen.php" class="btn">Ausloggen</a>
     </header>
     <main class="c-vertical c-horizontal">
-      <form class="box center" action="Buche.php" method="post">
+      <form class="box center" action="Zeige.php" method="post">
         <h1>Land-Wahl</h1>
         <p>Wählen Sie das Land aus, in das Sie reisen möchten.</p>
 
@@ -31,7 +31,7 @@
       while ( $satz=$cursor->fetch(PDO::FETCH_ASSOC))
       {
         echo "
-        <a class='land' href='Buche.php?land=$satz[code]'>
+        <a class='land' href='Zeige.php?land=$satz[code]'>
           <img  src='https://hatscripts.github.io/circle-flags/flags/$satz[code].svg' width='48'>
           <p>$satz[name]</p>
         </a>

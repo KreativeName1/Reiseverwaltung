@@ -50,7 +50,7 @@ CREATE TABLE `reiseverwaltung`.`buchung` (
 );
 
 CREATE VIEW land_ziel AS
-SELECT land.code AS land, ziel.name AS ziel, dauer, preis, abfahrtsdatum, abfahrtszeit, freieplaetze
+SELECT land.code AS land, ziel.name AS ziel, dauer, preis, abfahrtsdatum, abfahrtszeit, freieplaetze, ziel.id as ziel_id
 FROM land
 INNER JOIN ziel ON land.id = ziel.land_id;
 
