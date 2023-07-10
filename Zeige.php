@@ -30,6 +30,11 @@
         try {
           $sql = "SELECT *, DATE_FORMAT(abfahrtsdatum, '%d.%m.%Y') as abfahrtsdatum, TIME_FORMAT(abfahrtszeit, '%H:%i') as abfahrtszeit FROM land_ziel WHERE land = '$code' AND freieplaetze > 0 AND abfahrtsdatum > CURDATE() OR (abfahrtsdatum = CURDATE() AND abfahrtszeit > CURTIME())";
           $cursor=$db->query($sql);
+          if ($cursor->rowCount() == 0) {
+            echo "<h3>Es gibt leider keine Zielorte, die Sie buchen können.</h3>";
+            echo "<a href='Start.php' class='btn'>Zurück</a>";
+            exit();
+          }
           echo "<table>";
           echo "<tr><th>Ziel</th><th>Abfahrtsdatum</th><th>Abfahrtszeit</th><th>Freie Plätze</th><th></th></tr>";
           while ($ergebnis=$cursor->fetch(PDO::FETCH_ASSOC)) {

@@ -87,8 +87,8 @@ INSERT INTO `reiseverwaltung`.`land` (`name`, `code`) VALUES
 ('Rumänien', 'ro'),
 ('Zypern', 'cy'),
 ('Malta', 'mt'),
-('Lettland', 'lv');
-
+('Lettland', 'lv'),
+('Türkei', 'tr');
 
 
 --* Generiert von ChatGPT
