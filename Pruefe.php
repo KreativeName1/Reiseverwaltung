@@ -15,6 +15,8 @@
       <a href="Ausloggen.php" class="btn">Ausloggen</a>
     </header>
     <main class="c-vertical c-horizontal">
+      
+      <button class="btn back" onclick="history.back()">Zurück</button>
     </main>
     <footer>
       <p>© 2023 Reiseverwaltung GmbH</p>

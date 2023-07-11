@@ -137,11 +137,9 @@ function get(id) { return document.getElementById(id) }
     else { element.style.border = "2px solid red"; return false; }
   }
 </script>
-<?php
-// Prüft, ob die Registrierung abgeschickt wurde
+<?php // Prüft, ob die Registrierung abgeschickt wurde
 if (isset($_POST['email'])) {
   include "Funktionen.php";
-
   // Variablen werden mit den POST-Daten befüllt
   $vname = $_POST['vorname'];
   $nname = $_POST['nachname'];
@@ -152,18 +150,14 @@ if (isset($_POST['email'])) {
   $hausnr = $_POST['nummer'];
   $plz = $_POST['plz'];
   $ort = $_POST['ort'];
-
   $password = password_hash($password, PASSWORD_DEFAULT); // Passwort wird gehasht
-
   // Verbindung zur Datenbank wird hergestellt
   $pdo = db_oeffnen();
-
   // Prüft, ob die Email bereits vorhanden ist
   $ergebnis = runQuery($pdo, "SELECT email FROM kunde WHERE email = :email", [':email' => $email]);
   if (!is_bool($ergebnis)) {
     die("<script> confirm('Die Email-Adresse ist bereits vergeben!'); window.history.back(); </script>");
   }
-
   // Die Daten des Kunden werden in die Datenbank eingetragen
   runQuery(
     $pdo,
@@ -181,10 +175,7 @@ if (isset($_POST['email'])) {
       ':ort' => $ort
     ]
   );
-
   // Verbindung zur Datenbank wird geschlossen
   $pdo = null;
   header('Location: Login.php');
-
-}
-?>
+}?>

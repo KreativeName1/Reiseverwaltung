@@ -36,23 +36,35 @@ CREATE TABLE `reiseverwaltung`.`ziel` (
   FOREIGN KEY (`land_id`) REFERENCES `land`(`id`)
 );
 
+CREATE TABLE `reiseverwaltung`.`einstiegsort` (
+  `id` int(40) NOT NULL Auto_Increment,
+  `name` varchar(40) NOT NULL,
+  PRIMARY KEY (`id`),
+);
+
 CREATE TABLE `reiseverwaltung`.`buchung` (
   `id` int(40) NOT NULL Auto_Increment,
   `kunde_id` int(40) NOT NULL,
   `ziel_id` int(40) NOT NULL,
+  `einstiegs_id` int(40) NOT NULL,
   `datum` date NOT NULL,
   `uhrzeit` timestamp(6) NOT NULL DEFAULT current_timestamp(6) ON UPDATE current_timestamp(6),
   `anzahl` int(40) NOT NULL,
   `einsteigsort` varchar(40) NOT NULL,
   PRIMARY KEY (`id`),
   FOREIGN KEY (`kunde_id`) REFERENCES `kunde`(`id`),
-  FOREIGN KEY (`ziel_id`) REFERENCES `ziel`(`id`)
+  FOREIGN KEY (`ziel_id`) REFERENCES `ziel`(`id`),
+  FOREIGN KEY (`einstiegs_id`) REFERENCES `einstiegsort`(`id`)
 );
 
+
+
 CREATE VIEW land_ziel AS
-SELECT land.code AS land, ziel.name AS ziel, dauer, preis, abfahrtsdatum, abfahrtszeit, freieplaetze, ziel.id as ziel_id
+SELECT land.name as land_name, land.code AS land_code, ziel.name AS ziel, dauer, preis, abfahrtsdatum, abfahrtszeit, freieplaetze, ziel.id as ziel_id
 FROM land
 INNER JOIN ziel ON land.id = ziel.land_id;
+
+
 
 --* Password ist "123456789"
 INSERT INTO `reiseverwaltung`.`kunde` (vorname, nachname, email, passwort, strasse, hausnummer, plz, ort, gebdat) VALUES
@@ -92,7 +104,6 @@ INSERT INTO `reiseverwaltung`.`land` (`name`, `code`) VALUES
 
 
 --* Generiert von ChatGPT
-
 
 INSERT INTO ziel (`land_id`, `name`, `dauer`, `preis`, `abfahrtsdatum`, `abfahrtszeit`, `freieplaetze`) VALUES
 (1, 'Berlin Stadtrundfahrt', 3, 100, '2023-08-10', '09:00:00', 0),
@@ -238,6 +249,34 @@ INSERT INTO ziel (`land_id`, `name`, `dauer`, `preis`, `abfahrtsdatum`, `abfahrt
 (28, 'Cēsis Mittelalterlicher Stadtrundgang', 2, 75, '2023-09-23', '11:30:00', 5);
 
 
+
+INSERT INTO `reiseverwaltung`.`einsteigsort` (`name`) VALUES
+('Fuchsmühl Kirche'),
+('Fuchsmühl Schloß'),
+('Fuchsmühl Brunner'),
+('Pechbrunnen Ortsmitte'),
+('Pechbrunnen Groschlattengrün Ortsmitte'),
+('Wiesau Bahnhof'),
+('Wiesau Egerstraße'),
+('Waldershof Schafbruck'),
+('Waldershof Ringstraße'),
+('Marktredwitz Bahnhof'),
+('Marktredwitz Marienstraße'),
+('Marktredwitz Leutendorf'),
+('Mitterteich Neupleußen'),
+('Friedenfels Schönfuß'),
+('Friedenfels Frauenreuth'),
+('Waldsassen Bahnhof'),
+('Waldsassen Hatzenreuth'),
+('Waldsassen Chodauer Straße'),
+('Wunsiedel Bahnhof'),
+('Wunsiedel Holenbrunn'),
+('Tröstau Siedlung'),
+('Tröstau Vierst'),
+('Tröstau Vordorf'),
+('Erbendorf Plärn'),
+('Erbendorf Frodersreuth'),
+('Erbendorf Straßenschacht');
 
 
 

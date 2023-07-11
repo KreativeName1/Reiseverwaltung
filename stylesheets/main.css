@@ -206,6 +206,11 @@ footer {
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+.back {
+  position: fixed;
+  left: 1rem;
+  top: 5rem;
+}
 .btn {
   background-color: var(--accent3);
   font-family: var(--ff-body);

@@ -21,14 +21,13 @@
       // Der Befehl zum Ziel-Datensatz zu holen:
         $code = $_GET['land'];
         $db = db_oeffnen();
-        $sql = "SELECT DISTINCT name, id, code FROM land WHERE code = '$code'";
+        $sql = "SELECT name, id, code FROM land WHERE code = '$code'";
         $cursor=$db->query($sql);
         $satz=$cursor->fetch(PDO::FETCH_ASSOC);
-
         echo "<p>Sie haben $satz[name] ausgewählt.</p>";
         echo "<p style='margin-bottom: 1rem'>Bitte wählen Sie ein Ziel aus:</p>";
         try {
-          $sql = "SELECT *, DATE_FORMAT(abfahrtsdatum, '%d.%m.%Y') as abfahrtsdatum, TIME_FORMAT(abfahrtszeit, '%H:%i') as abfahrtszeit FROM land_ziel WHERE land = '$code' AND freieplaetze > 0 AND abfahrtsdatum > CURDATE() OR (abfahrtsdatum = CURDATE() AND abfahrtszeit > CURTIME())";
+          $sql = "SELECT *, DATE_FORMAT(abfahrtsdatum, '%d.%m.%Y') as abfahrtsdatum, TIME_FORMAT(abfahrtszeit, '%H:%i') as abfahrtszeit FROM land_ziel WHERE land_code = '$code' AND freieplaetze > 0 AND abfahrtsdatum > CURDATE() OR (abfahrtsdatum = CURDATE() AND abfahrtszeit > CURTIME())";
           $cursor=$db->query($sql);
           if ($cursor->rowCount() == 0) {
             echo "<h3>Es gibt leider keine Zielorte, die Sie buchen können.</h3>";
@@ -54,9 +53,10 @@
           die("Befehl-Fehler!: " . $e->getMessage() . "<br/>");
         }
       ?>
+      <button class="btn back" onclick="history.back()">Zurück</button>
     </main>
     <footer>
-      <p>© 2023 Reiseverwaltung GmbH</p>
+      <p>© 2023 Traumreise GmbH</p>
       <p>© 2023 von webNview GmbH</p>
     </footer>
   </body>
