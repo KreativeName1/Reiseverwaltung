@@ -47,10 +47,8 @@ CREATE TABLE `reiseverwaltung`.`buchung` (
   `kunde_id` int(40) NOT NULL,
   `ziel_id` int(40) NOT NULL,
   `einstiegs_id` int(40) NOT NULL,
-  `datum` date NOT NULL,
-  `uhrzeit` timestamp(6) NOT NULL DEFAULT current_timestamp(6) ON UPDATE current_timestamp(6),
-  `anzahl` int(40) NOT NULL,
-  `einsteigsort` varchar(40) NOT NULL,
+  `zeitstempel` timestamp(6) NOT NULL DEFAULT current_timestamp(6) ON UPDATE current_timestamp(6),
+  `personen` int(40) NOT NULL,
   PRIMARY KEY (`id`),
   FOREIGN KEY (`kunde_id`) REFERENCES `kunde`(`id`),
   FOREIGN KEY (`ziel_id`) REFERENCES `ziel`(`id`),
@@ -250,7 +248,7 @@ INSERT INTO ziel (`land_id`, `name`, `dauer`, `preis`, `abfahrtsdatum`, `abfahrt
 
 
 
-INSERT INTO `reiseverwaltung`.`einsteigsort` (`name`) VALUES
+INSERT INTO `reiseverwaltung`.`einsteuesort` (`name`) VALUES
 ('Fuchsmühl Kirche'),
 ('Fuchsmühl Schloß'),
 ('Fuchsmühl Brunner'),
