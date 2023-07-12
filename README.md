@@ -72,9 +72,8 @@ buchung
 ├─ id (PK)
 ├─ kunde_id (FK)
 ├─ ziel_id (FK)
-├─ datum
-├─ uhrzeit
-├─ anzahl
+├─ timestamp
+├─ personen
 ├─ einstiegsort
 ```
 

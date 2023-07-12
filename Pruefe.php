@@ -11,15 +11,18 @@
   </head>
   <body>
     <header>
-      <h1>Reiseverwaltung</h1>
-      <a href="Ausloggen.php" class="btn">Ausloggen</a>
+      <h1>Traumreisen</h1>
+      <nav>
+        <a href="Kunde.php" class="btn">Buchungen</a>
+        <a href="Ausloggen.php" class="btn">Ausloggen</a>
+      </nav>
     </header>
     <main class="c-vertical c-horizontal">
       
       <button class="btn back" onclick="history.back()">Zurück</button>
     </main>
     <footer>
-      <p>© 2023 Reiseverwaltung GmbH</p>
+      <p>© 2023 Traumreisen Wiesau GmbH</p>
       <p>© 2023 von webNview GmbH</p>
     </footer>
   </body>

@@ -7,7 +7,7 @@
   </head>
   <body>
     <header>
-      <h1>Reiseverwaltung</h1>
+      <h1>Traumreisen</h1>
     </header>
     <main class="c-vertical c-horizontal">
       <div class="box">
@@ -24,7 +24,7 @@
       </div>
 </main>
 <footer>
-  <p>© 2023 Reiseverwaltung GmbH</p>
+  <p>© 2023 Traumreisen Wiesau GmbH</p>
   <p>© 2023 von webNview GmbH</p>
 </footer>
 </html>
@@ -71,21 +71,16 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
   $password = $_POST['password'];
 
   // Verbindung zur Datenbank wird hergestellt
-  $pdo = db_oeffnen();
+  $db = db_oeffnen();
 
-  try {
+
     // Passwort wird aus der Datenbank geholt
-    $sql = "SELECT passwort FROM kunde WHERE email = :email";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute([
-      ':email' => $email
-    ]);
-    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    $ergebnis = runQuery($db,"SELECT passwort FROM kunde WHERE email = :email", [':email' => $email]);
 
     // Falls ein Ergebnis zurück kommt wird das Passwort überprüft, ansonsten wird eine Fehlermeldung ausgegeben
-    if ($result) {
+    if ($ergebnis) {
       // Passwort wird überprüft, wenn es stimmt wird eine Session gestartet und der User wird weitergeleitet
-      if (password_verify($password, $result['passwort'])) {
+      if (password_verify($password, $ergebnis['passwort'])) {
         session_start();
         $_SESSION['user'] = $email;
         header('Location: start.php');
@@ -95,10 +90,5 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
     } else {
       echo "<script>document.getElementById('fehler').innerHTML = 'Email existiert nicht!'</script>";
     }
-
-  } catch (PDOException $e) {
-    print "Error!: " . $e->getMessage() . "<br/>";
-    die();
-  }
 }
 ?>

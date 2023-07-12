@@ -12,8 +12,11 @@
   </head>
   <body>
     <header>
-      <h1>Reiseverwaltung</h1>
-      <a href="Ausloggen.php" class="btn">Ausloggen</a>
+      <h1>Traumreisen</h1>
+      <nav>
+        <a href="Kunde.php" class="btn">Buchungen</a>
+        <a href="Ausloggen.php" class="btn">Ausloggen</a>
+      </nav>
     </header>
     <main class="c-vertical c-horizontal">
       <form class="box center" action="Zeige.php" method="post">
@@ -22,12 +25,14 @@
 
         <div class="land-box">
       <?php
+      // Alle Länder aus der Datenbank holen
       $mydb = db_oeffnen();
-      $sql = "SELECT DISTINCT name, id, code
+      $sql = "SELECT name, id, code
       From land
       Order by name ASC";
-
       $cursor=$mydb->query($sql);
+
+      // Alle Länder als Links anzeigen
       while ( $satz=$cursor->fetch(PDO::FETCH_ASSOC))
       {
         echo "
@@ -42,7 +47,7 @@
     </form>
     </main>
     <footer>
-      <p>© 2023 Reiseverwaltung GmbH</p>
+      <p>© 2023 Traumreisen Wiesau GmbH</p>
       <p>© 2023 von webNview GmbH</p>
     </footer>
   </body>

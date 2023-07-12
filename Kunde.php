@@ -14,13 +14,13 @@
   </head>
   <body>
     <header>
-      <h1>Reiseverwaltung</h1>
+      <h1>Traumreisen</h1>
       <a href="Ausloggen.php" class="btn">Ausloggen</a>
     </header>
     <main class="c-vertical c-horizontal">
     </main>
     <footer>
-      <p>© 2023 Reiseverwaltung GmbH</p>
+      <p>© 2023 Traumreisen Wiesau GmbH</p>
       <p>© 2023 von webNview GmbH</p>
     </footer>
   </body>

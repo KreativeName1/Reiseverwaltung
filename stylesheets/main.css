@@ -1,17 +1,7 @@
-/* Worksans */
-/* @import url('https://fonts.googleapis.com/css?family=Work+Sans:400,600'); */
 /* Roboto */
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
 /* Nunito */
 @import url('https://fonts.googleapis.com/css?family=Nunito');
-/* Raleway */
-/* @import url('https://fonts.googleapis.com/css?family=Raleway'); */
-/* Merriweather Sans */
-/* @import url('https://fonts.googleapis.com/css?family=Merriweather Sans'); */
-/* @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap'); */
-
-
-
 
 :root {
   --accent1: #35b36c;
@@ -19,21 +9,6 @@
   --accent3: #3ec69b;
   --accent4: #62d076;
   --accent5: #5ecd56;
-
-  /* another green accent
-  --accent1: #abd648;
-  --accent2: #9dc837;
-  --accent3: #7f9d39;
-  --accent4: #505e311;
-  --accent5: #26291e;
-
-  /* purple accent */
-  /* --accent2: #debbf4;
-  --accent1: #eb84df;
-  --accent3: #d66ae7;
-  --accent4: #ad88ec;
-  --accent5: #4d39df;
-  */
   --light: #FFFFFF;
   --grey: #656565;
   --dark: #000000;
@@ -44,67 +19,8 @@
   --fw-normal: 500;
   --fw-light: 300;
 }
-.land:hover {
-  cursor: pointer;
-  transform: scale(1.1);
-  transition: 0.2s;
-  border: 1px solid black;
-  border-radius: 10px;
-}
-.land {
-  position: relative;
-}
-.land p {
-  display: none;
-}
-.land:hover p {
-  position: absolute;
-  bottom: -1.5rem;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 10;
-  display: block;
-}
-.land-box {
-  display: grid;
-  margin-bottom: 2rem;
-  width: 30rem;
-  gap: 1rem;
-  row-gap: 2rem;
-  grid-template-columns: repeat(auto-fit, minmax(45px, 1fr));
-}
-.falsch {
-  border: 2px solid red !important;
-}
-.richtig {
-  border: 2px solid #4CAF50 !important;
-}
-.icon {
-  width: 1rem;
-  height: 1rem;
-}
 
-.center {
-  text-align: center;
-}
-.flex {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-}
-.middle {
-  display:block;
-  margin-inline: auto;
-}
-
-.invisible {
-  cursor: pointer;
-  position: absolute;
-  right: -1.7rem;
-  border: none;
-  background-color:transparent;
-}
+/*  Styling der Tags  */
 h1,h2,h3,h4,h5,h6 {
   font-family: var(--ff-header);
   font-weight: var(--fw-bold);
@@ -136,7 +52,6 @@ input:is([type="text"], [type="number"], [type="password"], [type="date"]), text
 input:focus, textarea:focus, select:focus {
   outline: none;
 }
-
 table {
   border-collapse: collapse;
   font-family: var(--ff-body);
@@ -145,7 +60,6 @@ table {
   min-width: 35rem;
   border: 2px solid var(--accent1);
 }
-
 th, td {
   text-align: left;
   padding: 8px;
@@ -161,8 +75,10 @@ th {
 tr:hover, tr:nth-child(even):hover {
   background-color: var(--accent3)
 }
-
-
+nav {
+  gap: 1rem;
+  display: flex;
+}
 header {
   background-color: var(--accent1);
   color: var(--light);
@@ -171,20 +87,81 @@ header {
   padding: 2rem;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 1rem;
 }
 footer {
   background-color: var(--accent1);
+  color: var(--grey);
   position: absolute;
   bottom: 0;
   height: 2.5rem;
   width: 100%;
-
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 5rem;
+}
 
-  color: var(--grey);
+/*  Länder Auswahl  */
+.land:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  transition: 0.2s;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+.land {
+  position: relative;
+}
+.land p {
+  display: none;
+}
+.land:hover p {
+  position: absolute;
+  bottom: -1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: block;
+}
+.land-box {
+  display: grid;
+  margin-bottom: 2rem;
+  width: 30rem;
+  gap: 1rem;
+  row-gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(45px, 1fr));
+}
+
+/* Sonstiges */
+.land-select
+{
+  position: absolute;
+
+}
+.icon {
+  width: 1rem;
+  height: 1rem;
+}
+.center {
+  text-align: center;
+}
+.flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+.middle {
+  display:block;
+  margin-inline: auto;
+}
+.password-info {
+  cursor: pointer;
+  position: absolute;
+  right: -1.7rem;
+  border: none;
+  background-color:transparent;
 }
 .c-horizontal {
   display: flex;
@@ -197,19 +174,16 @@ footer {
   flex-direction: column;
   justify-content: center;
 }
-.box {
-  background-color: var(--accent-bg);
-  color: var(--dark);
-  width: fit-content;
-  padding: 2rem;
-  margin: 2rem;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
 .back {
   position: fixed;
   left: 1rem;
   top: 5rem;
+}
+.flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
 }
 .btn {
   background-color: var(--accent3);
@@ -227,6 +201,19 @@ footer {
   background-color: var(--accent1);
   transition: 0.2s;
 }
+.btn:active {
+  transform: scale(0.9);
+  transition: 0.2s;
+}
+.box {
+  background-color: var(--accent-bg);
+  color: var(--dark);
+  width: fit-content;
+  padding: 2rem;
+  margin: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
 .box>form {
   margin-top: 1rem;
   position: relative;
@@ -235,11 +222,10 @@ form>* {
   margin: 1rem 0;
 }
 
-
+/* tooltip (nicht von mir) */
 [tooltip] {
   font-family: var(--ff-body);
 }
-/* Nicht selber geschrieben */
 [tooltip]::before,
 [tooltip]::after {
   --scale: 0;
@@ -251,7 +237,6 @@ form>* {
   transition: 150ms transform;
   transform-origin: bottom center;
 }
-
 [tooltip]::before {
   --translate-y: calc(-100% - var(--arrow-size));
   content: attr(tooltip);
@@ -262,12 +247,10 @@ form>* {
   width: min-content;
   background: var(--accent);
 }
-
 [tooltip]:hover::before,
 [tooltip]:hover::after {
   --scale: 1;
 }
-
 [tooltip]::after {
   --translate-y: calc(-1 * var(--arrow-size));
 
@@ -277,6 +260,7 @@ form>* {
   transform-origin: top center;
 }
 
+/*  Animationen  */
 @keyframes shake {
   0% {
     transform: translate(1px, 1px) rotate(0deg);

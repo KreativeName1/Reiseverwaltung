@@ -12,8 +12,11 @@
   </head>
   <body>
     <header>
-      <h1>Reiseverwaltung</h1>
-      <a href="Ausloggen.php" class="btn">Ausloggen</a>
+      <h1>Traumreisen</h1>
+      <nav>
+        <a href="Kunde.php" class="btn">Buchungen</a>
+        <a href="Ausloggen.php" class="btn">Ausloggen</a>
+      </nav>
     </header>
     <main class="c-vertical c-horizontal">
       <h1>Buchung</h1>
@@ -29,25 +32,59 @@
         $cursor=$db->query($sql);
         $ziel = $cursor->fetch(PDO::FETCH_ASSOC);
         echo "<h2>$kunde[vorname] $kunde[nachname]</h2>";
-        echo "<p  style='margin-bottom: 1rem'>Kundennummer: $kunde[id]</p>";
-        echo"<table>";
-        echo"<tr><td>Land</td><td>$ziel[land_name]</td></tr>
-        <tr><td>Zielort<td>$ziel[ziel]</td></tr>
-        <tr><td>Dauer</td><td>$ziel[dauer] Tag(e)</td></tr>
-        <tr><td>Preis</td><td>$ziel[preis] €</td></tr>
-        <tr><td>Abfahrtsdatum</td><td>$ziel[abfahrtsdatum]</td></tr>
-        <tr><td>Abfahrtszeit</td><td>$ziel[abfahrtszeit]</td></tr>
-        <tr><td>Freie Plätze</td><td>$ziel[freieplaetze]</td></tr>
-        ";
+        echo "<p style='margin-bottom: 1rem'>Kundennummer: $kunde[id]</p>";
+        echo "
+          <table>
+            <tr><td>Land</td><td>$ziel[land_name]</td></tr>
+            <tr><td>Zielort<td>$ziel[ziel]</td></tr>
+            <tr><td>Dauer</td><td>$ziel[dauer] Tag(e)</td></tr>
+            <tr><td>Preis</td><td>$ziel[preis] €</td></tr>
+            <tr><td>Abfahrtsdatum</td><td>$ziel[abfahrtsdatum]</td></tr>
+            <tr><td>Abfahrtszeit</td><td>$ziel[abfahrtszeit]</td></tr>
+            <tr><td>Freie Plätze</td><td>$ziel[freieplaetze]</td></tr>
+          </table>";
+          echo "Bitte Einstiegsort wählen";
+
+        $sql = "SELECT id, name FROM einstiegsort";
+        $cursor = $db->query($sql);
+        $stellen = $cursor->fetch(PDO::FETCH_ASSOC);
+
+       echo "<select name='stellen'>";
+       
+       while($stellen){
+        echo "<option value='$stellen[id]'>$stellen[name]</option>";
+        $stellen = $cursor->fetch(PDO::FETCH_ASSOC);
+       }
+       echo "</select>";
+       echo "Einzahl der Plätze eingeben:<br>";
+       
+       echo "<input type='text' name='personen'>";
+       echo "<button type='submit' id='submit' class='btn middle'>Weiter</button>";
+       
+
       ?>
       <button class="btn back" onclick="history.back()">Zurück</button>
     </main>
     <footer>
-      <p>© 2023 Reiseverwaltung GmbH</p>
+      <p>© 2023 Traumreisen Wiesau GmbH</p>
       <p>© 2023 von webNview GmbH</p>
     </footer>
   </body>
 </html>
   <script>
-    // javascript hier
+    <?php echo "var plaetze = $ziel[freieplaetze];"; ?>
+        var personen = document.getElementsByName('personen')[0];
+        var freieplaetze = document.getElementsByName('freieplaetze')[0];
+        var submit = document.getElementById('submit');
+        personen.addEventListener('input', function() {
+          if (personen.value <= plaetze && personen.value > 0) {
+            personen.style.border = "2px solid #4CAF50";
+            submit.disabled = false;
+          }
+          else {
+            personen.style.border = "2px solid red";
+            submit.disabled = true;
+            
+          }
+          });
   </script>

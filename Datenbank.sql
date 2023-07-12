@@ -248,7 +248,7 @@ INSERT INTO ziel (`land_id`, `name`, `dauer`, `preis`, `abfahrtsdatum`, `abfahrt
 
 
 
-INSERT INTO `reiseverwaltung`.`einsteuesort` (`name`) VALUES
+INSERT INTO `reiseverwaltung`.`einstiegsort` (`name`) VALUES
 ('Fuchsmühl Kirche'),
 ('Fuchsmühl Schloß'),
 ('Fuchsmühl Brunner'),
