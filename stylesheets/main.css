@@ -3,6 +3,7 @@
 /* Nunito */
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 
+/* Variablen */
 :root {
   --accent1: #35b36c;
   --accent2: #7dd9d2;
@@ -49,7 +50,7 @@ input:is([type="text"], [type="number"], [type="password"], [type="date"]), text
   padding: .5rem 1rem;
   transition: 0.2s;
 }
-input:focus, textarea:focus, select:focus {
+:is(input, textarea, select, option):focus {
   outline: none;
 }
 table {

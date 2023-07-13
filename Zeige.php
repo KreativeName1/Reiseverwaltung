@@ -21,7 +21,6 @@
     <main class="c-vertical c-horizontal">
       <h1 class="center">Ziel-Wahl</h1>
       <?php
-        
 
         $code = $_GET['land'];
         $db = db_oeffnen();

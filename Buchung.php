@@ -8,6 +8,9 @@
     session_start();
     if (!isset($_SESSION['user'])) header("Location: login.php");
     include "Funktionen.php";
+
+   
+
     ?>
   </head>
   <body>
@@ -19,6 +22,17 @@
       </nav>
     </header>
     <main class="c-vertical c-horizontal">
+      <?php
+      
+       echo "<h2>Vielen Dank für Ihre Buchung</h2>";
+      $pdf = new FPDF();
+      $pdf->AddPage(); 
+      $pdf->SetFont('Arial', 'B', 16);
+      $pdf->Cell(0, 10, 'Buchung', 0, 1);
+      $pdf->Cell(0, 10, "adddd" . ' - ' . "ddafsdf", 0, 1);
+      echo '<br><a href="?pdf=1">Buchungsbestätigung als PDF herunterladen</a>';
+
+      ?>
     </main>
     <footer>
       <p>© 2023 Traumreisen Wiesau GmbH</p>
