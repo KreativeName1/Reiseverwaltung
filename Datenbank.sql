@@ -26,7 +26,7 @@ CREATE TABLE `reiseverwaltung`.`land` (
 CREATE TABLE `reiseverwaltung`.`ziel` (
   `id` int(40) NOT NULL Auto_Increment,
   `land_id` int(40) NOT NULL,
-  `name` int(40) NOT NULL,
+  `name` varchar(40) NOT NULL,
   `dauer` int(40) NOT NULL,
   `preis` int(40) NOT NULL,
   `abfahrtsdatum` date NOT NULL,
@@ -39,7 +39,7 @@ CREATE TABLE `reiseverwaltung`.`ziel` (
 CREATE TABLE `reiseverwaltung`.`einstiegsort` (
   `id` int(40) NOT NULL Auto_Increment,
   `name` varchar(40) NOT NULL,
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`id`)
 );
 
 CREATE TABLE `reiseverwaltung`.`buchung` (
@@ -64,11 +64,11 @@ INNER JOIN ziel ON land.id = ziel.land_id;
 
 
 
---* Password ist "123456789"
+-- * Password ist "123456789"
 INSERT INTO `reiseverwaltung`.`kunde` (vorname, nachname, email, passwort, strasse, hausnummer, plz, ort, gebdat) VALUES
 ('Vorname', 'Nachname', 'test@mail.com', '$2y$10$aBJkWB0i7PBXaQivfhsYheM9JV/OfgtnrweblERBLuTvn7J6q6aEi', 'Strasse', 1, '12345', 'Ort', '2000-01-01');
 
---* Generiert von GitHub Copilot
+-- * Generiert von GitHub Copilot
 INSERT INTO `reiseverwaltung`.`land` (`name`, `code`) VALUES
 ('Belgien', 'be'),
 ('Bulgarien', 'bg'),
@@ -101,7 +101,7 @@ INSERT INTO `reiseverwaltung`.`land` (`name`, `code`) VALUES
 ('Türkei', 'tr');
 
 
---* Generiert von ChatGPT
+-- * Generiert von ChatGPT
 
 INSERT INTO ziel (`land_id`, `name`, `dauer`, `preis`, `abfahrtsdatum`, `abfahrtszeit`, `freieplaetze`) VALUES
 (1, 'Berlin Stadtrundfahrt', 3, 100, '2023-08-10', '09:00:00', 0),

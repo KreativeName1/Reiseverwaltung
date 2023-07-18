@@ -3,12 +3,6 @@
 /* Nunito */
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 
-/*
-
-DIESE MAIN.CSS BENUTZT NESTING, DAS NOCH NICHT VON ALLEN BROWSERN UNTERSTÜTZT WIRD
-
-*/
-
 /* Variablen */
 :root {
   --accent1: #35b36c;
@@ -119,29 +113,26 @@ main {
 }
 
 /*  Länder Auswahl  */
+.land:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  transition: 0.2s;
+  border: 1px solid black;
+  border-radius: 10px;
+}
 .land {
   position: relative;
-
-  &:hover {
-    cursor: pointer;
-    transform: scale(1.1);
-    transition: 0.2s;
-    border: 1px solid black;
-    border-radius: 10px;
-
-    & p {
-      position: absolute;
-      bottom: -1.5rem;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 10;
-      display: block;
-    }
-  }
-
-  & p {
-    display: none;
-  }
+}
+.land p {
+  display: none;
+}
+.land:hover p {
+  position: absolute;
+  bottom: -1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: block;
 }
 .land-box {
   display: grid;
@@ -167,31 +158,28 @@ main {
   height: fit-content;
   width: 15rem;
   border-radius: 10px;
-
-  & >:first-child {
-    --padding: .5rem;
-    border-radius: 10px 10px 0 0;
-    padding-left: var(--padding);
-    padding-bottom: var(--padding);
-    width: 100%;
-    background-color: var(--accent1);
-
-    & >* {
-      color: var(--light);
-    }
-  }
-
-  & >:last-child {
-    padding: 1rem;
-    width: 100%;
-    position: relative;
-  }
-
-  & a {
-    position: absolute;
-    bottom: .5rem;
-    right: .5rem;
-  }
+}
+.card>:first-child {
+  --padding: .5rem;
+  border-radius: 10px 10px 0 0;
+  padding-left: var(--padding);
+  padding-bottom: var(--padding);
+  width: 100%;
+  background-color: var(--accent1);
+}
+.card>:first-child>* {
+  color: var(--light);
+}
+.card>:last-child {
+  padding: 1rem;
+  width: 100%;
+  position: relative;
+}
+.card a
+{
+  position: absolute;
+  bottom: .5rem;
+  right: .5rem;
 }
 
 /* Sonstiges */
@@ -263,14 +251,14 @@ main {
   text-decoration: none;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   transition: 0.2s;
-  &:hover {
-    background-color: var(--accent1);
-    transition: 0.2s;
-  }
-  &:active {
-    transform: scale(0.9);
-    transition: 0.2s;
-  }
+}
+.btn:hover {
+  background-color: var(--accent1);
+  transition: 0.2s;
+}
+.btn:active {
+  transform: scale(0.9);
+  transition: 0.2s;
 }
 .mini {
   font-size: 0.8rem;
@@ -285,11 +273,10 @@ main {
   margin: 2rem;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-
-  & form {
-    margin-top: 1rem;
-    position: relative;
-  }
+}
+.box>form {
+  margin-top: 1rem;
+  position: relative;
 }
 form>* {
   margin: 1rem 0;
