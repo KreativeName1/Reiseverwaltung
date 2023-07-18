@@ -27,11 +27,14 @@ h1,h2,h3,h4,h5,h6 {
   font-weight: var(--fw-bold);
   font-weight: bold;
 }
-p,span,i,a,ul,li,ol {
+p,span,i,a,ul,li,ol,strong {
   font-family: var(--ff-body);
   font-weight: var(--fw-normal);
   width: fit-content;
   color: var(--dark);
+}
+strong {
+  font-weight: var(--fw-bold);
 }
 button[disabled] {
   cursor: not-allowed;

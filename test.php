@@ -45,11 +45,3 @@
 
 </body>
 </html>
-<script>
-function createPDF() {
-var element = document.getElementById('print');
-html2pdf()
-    .from(element)
-    .save('output.pdf');
-}
-</script>

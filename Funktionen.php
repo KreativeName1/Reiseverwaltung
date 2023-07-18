@@ -32,4 +32,24 @@ function runQuery($db, $sql, $param = null)
   }
   return $result;
 }
+
+// make the function above but return all results
+function runQueryAll($db, $sql, $param = null)
+{
+  try
+  {
+    if ($param == null)
+      $stmt = $db->query($sql);
+    else {
+    $stmt = $db->prepare($sql);
+    $stmt->execute($param);
+    }
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  }
+  catch (PDOException $e)
+  {
+    die("Befehl-Fehler!: " . $e->getMessage() . "<br/>");
+  }
+  return $result;
+}
 ?>
