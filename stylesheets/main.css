@@ -88,15 +88,18 @@ header {
   color: var(--light);
   height: 3rem;
   display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
   padding: 2rem;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1rem;
 }
 footer {
   background-color: var(--accent1);
   color: var(--grey);
-  position: absolute;
+  position: fixed;
   bottom: 0;
   height: 2.5rem;
   width: 100%;
@@ -104,6 +107,9 @@ footer {
   justify-content: center;
   align-items: center;
   gap: 5rem;
+}
+main {
+  margin-top: 4rem;
 }
 
 /*  Länder Auswahl  */
@@ -137,7 +143,52 @@ footer {
   grid-template-columns: repeat(auto-fit, minmax(45px, 1fr));
 }
 
+/* Grid der Buchungen */
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  width: fit-content;
+  gap: 1rem;
+  row-gap: 2rem;
+  margin-left: 3rem;
+}
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  height: fit-content;
+  width: 15rem;
+  border-radius: 10px;
+}
+.card>:first-child {
+  --padding: .5rem;
+  border-radius: 10px 10px 0 0;
+  padding-left: var(--padding);
+  padding-bottom: var(--padding);
+  width: 100%;
+  background-color: var(--accent1);
+}
+.card>:first-child>* {
+  color: var(--light);
+}
+.card>:last-child {
+  padding: 1rem;
+  width: 100%;
+  position: relative;
+}
+.card a
+{
+  position: absolute;
+  bottom: .5rem;
+  right: .5rem;
+}
+
 /* Sonstiges */
+
+.flex-smallgap {
+  gap: .5rem;
+  display: flex;
+  align-items: center;
+}
 .land-select
 {
   position: absolute;
@@ -208,6 +259,11 @@ footer {
 .btn:active {
   transform: scale(0.9);
   transition: 0.2s;
+}
+.mini {
+  font-size: 0.8rem;
+  padding: .2rem 1rem;
+  border-radius: 5px;
 }
 .box {
   background-color: var(--accent-bg);
