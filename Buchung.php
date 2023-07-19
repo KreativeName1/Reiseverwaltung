@@ -117,9 +117,6 @@
 </html>
 <script>
 function createPDF() {
-  // Spechert per PHP die Buchungsnummer in einer Variable
-  var name = "<?php echo "Buchung-Nr.$buchung_id.php" ?>";
-
   // Holt sich das Element mit der ID print
   var element = document.getElementById('print');
 
@@ -128,10 +125,11 @@ function createPDF() {
     format: 'A4',
     orientation: 'portrait',
     type: 'webp',
-    html2canvas:  { scale: 2 },
+    html2canvas:  { scale: 5 },
+    filename: '<?php echo "Buchung-Nr.$buchung_id.php" ?>'
   }
 
   // Wandelt das HTML zu PDF um und speichert es
-  html2pdf().from(element).set(opt).save(name);
+  html2pdf().from(element).set(opt).save();
 }
 </script>

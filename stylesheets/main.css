@@ -85,10 +85,6 @@ th {
 tr:hover, tr:nth-child(even):hover {
   background-color: var(--accent3)
 }
-nav {
-  gap: 1rem;
-  display: flex;
-}
 header {
   background-color: var(--accent1);
   color: var(--light);
@@ -101,6 +97,13 @@ header {
   padding: 2rem;
   justify-content: space-between;
   align-items: center;
+  & nav {
+    gap: 1rem;
+    display: flex;
+  }
+  & img {
+    height: 2rem;
+  }
 }
 footer {
   background-color: var(--accent1);
@@ -158,12 +161,13 @@ main {
   display: flex;
   flex-wrap: wrap;
   width: fit-content;
-  gap: 1rem;
+  gap: 2rem;
   row-gap: 2rem;
   margin-left: 3rem;
+  margin-bottom: 2rem;
 }
 .card {
-  --size: 1.2rem;
+  --size: 1.3rem;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   height: fit-content;
   width: 20rem;
@@ -171,10 +175,8 @@ main {
   font-size: var(--size);
 
   & >:first-child {
-    --padding: .5rem;
     border-radius: 10px 10px 0 0;
-    padding-left: var(--padding);
-    padding-bottom: var(--padding);
+    padding: 1rem;
     width: 100%;
     background-color: var(--accent1);
 
@@ -186,6 +188,7 @@ main {
   & >:last-child {
     padding: 1rem;
     width: 100%;
+    font-size: 1.4rem;
     position: relative;
   }
 
@@ -256,6 +259,9 @@ main {
   gap: 1rem;
 }
 .btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: var(--accent3);
   font-family: var(--ff-body);
   font-weight: var(--fw-bold);
@@ -269,6 +275,7 @@ main {
   &:hover {
     background-color: var(--accent1);
     transition: 0.2s;
+    cursor: pointer;
   }
   &:active {
     transform: scale(0.9);
@@ -281,7 +288,7 @@ main {
   border-radius: 5px;
 }
 .box {
-  background-color: var(--accent-bg);
+  background-color: var(--light);
   color: var(--dark);
   width: fit-content;
   padding: 2rem;
@@ -299,6 +306,33 @@ form>* {
 }
 #print {
   margin: 1rem auto;
+}
+#form {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%);
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
+
+  & img {
+    height: 2rem;
+  }
+}
+.close {
+  width: 5rem;
+  position: absolute;
+  top:1rem;
+  right: 0rem;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+.close:hover {
+  opacity: 0.5;
+}
+.mb1
+{
+  margin-bottom: 1rem;
 }
 /* tooltip (nicht von mir) */
 [tooltip] {
