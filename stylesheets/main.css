@@ -163,10 +163,12 @@ main {
   margin-left: 3rem;
 }
 .card {
+  --size: 1.2rem;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   height: fit-content;
-  width: 15rem;
+  width: 20rem;
   border-radius: 10px;
+  font-size: var(--size);
 
   & >:first-child {
     --padding: .5rem;
@@ -189,8 +191,9 @@ main {
 
   & a {
     position: absolute;
-    bottom: .5rem;
-    right: .5rem;
+    bottom: 1rem;
+    right: 1rem;
+    font-size: var(--size);
   }
 }
 
@@ -298,41 +301,41 @@ form>* {
 /* tooltip (nicht von mir) */
 [tooltip] {
   font-family: var(--ff-body);
-}
-[tooltip]::before,
-[tooltip]::after {
-  --scale: 0;
-  --arrow-size: 20px;
+  background-color: var(--accent);
 
-  position: absolute;
-  top: -.25rem;
-  transform: translateX(-50%) translateY(var(--translate-y, 0)) scale(var(--scale));
-  transition: 150ms transform;
-  transform-origin: bottom center;
-}
-[tooltip]::before {
-  --translate-y: calc(-100% - var(--arrow-size));
-  content: attr(tooltip);
-  color: white;
-  padding: .5rem;
-  border-radius: .3rem;
-  text-align: center;
-  width: min-content;
-  background: var(--accent);
+  &::before, &::after {
+    --scale: 0;
+    --arrow-size: 20px;
+    position: absolute;
+    top: -.25rem;
+    transform: translateX(-50%) translateY(var(--translate-y, 0)) scale(var(--scale));
+    transition: 150ms transform;
+    transform-origin: bottom center;
+  }
+
+  &::after {
+    --translate-y: calc(-1 * var(--arrow-size));
+    content: '';
+    border: var(--arrow-size) solid transparent;
+    border-top-color: var(--accent1);
+    transform-origin: top center;
+  }
+
+  &::before {
+    --translate-y: calc(-100% - var(--arrow-size));
+    content: attr(tooltip);
+    color: white;
+    padding: .5rem;
+    border-radius: .3rem;
+    text-align: center;
+    width: 20rem;
+    background-color: var(--accent1);
+  }
 }
 [tooltip]:hover::before,
 [tooltip]:hover::after {
   --scale: 1;
 }
-[tooltip]::after {
-  --translate-y: calc(-1 * var(--arrow-size));
-
-  content: '';
-  border: var(--arrow-size) solid transparent;
-  border-top-color: var(--accent);
-  transform-origin: top center;
-}
-
 /*  Animationen  */
 @keyframes shake {
   0% {

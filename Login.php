@@ -83,6 +83,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
       if (password_verify($password, $ergebnis['passwort'])) {
         session_start();
         $_SESSION['user'] = $email;
+        $_SESSION['user_id'] = runQuery($db,"SELECT id FROM kunde WHERE email = :email", [':email' => $email])['id'];
         header('Location: start.php');
       } else {
         echo "<script>document.getElementById('fehler').innerHTML = 'Passwort ist falsch!'</script>";

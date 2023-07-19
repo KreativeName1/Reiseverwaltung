@@ -30,7 +30,6 @@
       $sql = "SELECT id, vorname, nachname FROM kunde WHERE email = '$email'";
       $cursor=$db->query($sql);
       $kunde = $cursor->fetch(PDO::FETCH_ASSOC);
-      $_SESSION['user_id'] = $kunde['id'];
 
       // Ziel wird aus Datenbank geholt
       $sql = "SELECT *, DATE_FORMAT(abfahrtsdatum, '%d.%m.%Y') as abfahrtsdatum, TIME_FORMAT(abfahrtszeit, '%H:%i') as abfahrtszeit FROM land_ziel WHERE ziel_id = $_SESSION[ziel]";

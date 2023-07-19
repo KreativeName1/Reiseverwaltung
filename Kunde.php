@@ -19,7 +19,6 @@
     <main>
       <?php
           include 'Funktionen.php';
-
           $vergangene = "
           Select b.id, b.zeitstempel, b.personen, e.name as einstiegstelle, z.name as ziel, l.name as land, Date_Format(z.abfahrtsdatum, '%d.%m.%Y') as abfahrtsdatum, TIME_FORMAT(z.abfahrtszeit, '%H:%i') as abfahrtszeit, z.preis
           from buchung b
@@ -60,6 +59,41 @@
             foreach ($buchungen as $buchung) { ausgabe($buchung); }
             echo "</div>";
           }
+          $db = db_oeffnen("reiseverwaltung","root");
+          $sql = "SELECT *, Date_Format(gebdat, '%d.%m.%Y') as gebdat FROM kunde WHERE email = '$_SESSION[user]'";
+          $cursor=$db->query($sql);
+          $kunde = $cursor->fetch(PDO::FETCH_ASSOC);
+
+        echo"<table>";
+        echo"<tr><th colspan=2>Ändern Sie Ihre Persönlichen Daten</th></tr>";
+        echo"<tr><td>Vorname:</td><td><input type='text' value='$kunde[vorname]' name='vornameneu'></td></tr>";
+        echo"<tr><td>Nachname:</td><td><input type='text' value='$kunde[nachname]' name='nachnameneu'></td></tr>";
+        echo"<tr><td>Straße:</td><td><input type='text' value='$kunde[strasse]' name='strasse'></td></tr>";
+        echo"<tr><td>Hausnummer:</td><td><input type='text' value='$kunde[hausnummer]' name='hausnummer'></td></tr>";
+        echo"<tr><td>Postleitzahl:</td><td><input type='text' value='$kunde[plz]' name='plzneu'></td></tr>";
+        echo"<tr><td>Ort:</td><td><input type='text' value='$kunde[ort]' name='ortneu'></td></tr>";
+        echo"<tr><td>Geburtsdatum:</td><td><input type='text' value='$kunde[gebdat]' name='gebdatneu'></td></tr>";
+        echo"<tr><td>E-Mail:</td><td><input type='text' value='$kunde[email]' name='emailneu'></td></tr>";
+        echo"<tr><td>Passwort:</td><td><input type='text' value='$kunde[passwort]' name='passwortneu'></td></tr>";
+        echo"</table>";
+        
+          //Die neuen Kundendaten in die Datenbank einschreiben
+        $vorname = $_POST['vornameneu'];
+        $nachname = $_POST['nachnameneu'];
+        $strasse = $_POST['strasse'];
+        $hausnummer = $_POST['hausnummer'];
+        $plz = $_POST['plzneu'];
+        $ort = $_POST['ortneu'];
+        $gebdat = $_POST['gebdatneu'];
+        $email = $_POST['emailneu'];
+        $passwort = $_POST['passwortneu'];
+          
+          $db = db_oeffnen("reiseverwaltung","root");
+          $sql="UPDATE kunden 
+          SET vorname='$vorname', nachname='$nachname', email='$email', passwort='$passwort', strasse='$strasse', hausnummer='$hausnummer', plz='$plz', ort='$ort', gebdat='$gebdat',
+          WHERE email = '$_SESSION[user]'";
+       
+        
 
           // Datenbankverbindung schließen
           $db = null;
