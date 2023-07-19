@@ -27,18 +27,22 @@
 
         // Wenn der Kunde über die Kunde.php Seite kommt
         if (isset($_GET['id'])) {
-          // Überprüft, ob die Buhcung dem Kunden gehört
+          // Überprüft, ob die Buchung dem Kunden gehört, der gerade eingeloggt ist
           $sql = "SELECT * FROM buchung WHERE id = :id AND kunde_id = :user_id";
           $ergebnis = runQueryAll($db, $sql, [
             ":id" => $_GET['id'],
             ":user_id" => $_SESSION['user_id']
           ]);
+
+          // Wenn die Buchung dem Kunden gehört wird die Buchung_id gespeichert,
+          // sonst wird die Seite nicht angezeigt
           count($ergebnis) == 1 ? $buchung_id = $_GET['id'] : die("<h1>Kein Zugriff!</h1>");
         }
         // Wenn der Kunde gerade Gebucht hat
         else if (isset($_SESSION['buchung_id'])) {
           $buchung_id = $_SESSION['buchung_id'];
         }
+        // Wenn der Kunde die Seite direkt aufruft
         else die("<h1>Kein Zugriff!</h1>");
 
         unset($_SESSION['buchung_id']);
@@ -76,35 +80,33 @@
         $daten = $cursor->fetch(PDO::FETCH_ASSOC);
 
         // Ausgabe der Daten
-        echo "<button class='btn' style='margin-top:1rem' onclick ='createPDF()'>PDF Herunterladen</button>";
-        echo "<div id='print' class='box' style='margin-bottom:5rem'>";
-        echo "<div class='c-horizontal' style='margin-bottom:.5rem'>";
-        echo "<h2>Buchungsbestätigung</h2>";
-        echo "<strong>Gebucht am $daten[buchung_datum] um $daten[buchung_zeit]</strong>";
-        echo "<p>Buchungsnummer: $daten[buchung_id]</p>";
-        echo "</div>";
-        echo"<table>";
-        echo"<tr><th colspan=3>Persönlichen Daten</th></tr>";
-        echo"<tr><td> Kundennummer:</td> <td>$daten[kunde_id]</td></tr>";
-        echo"<tr><td> Name:</td> <td>$daten[vorname] $daten[nachname]</td></tr>";
-        echo"<tr><td> Straße:</td> <td>$daten[strasse] $daten[hausnummer]</td></tr>";
-        echo"<tr><td> Ort:</td> <td>$daten[plz] $daten[ort]</td></tr>";
-        echo"<tr><td> Geburtstdatum:</td> <td>$daten[gebdat]</td></tr>";
-        echo"</table>";
-
-        echo"<table>";
-        echo"<tr><th colspan=3>Reisedaten</th></tr>";
-        echo"<tr><td> Land:</td> <td>$daten[land_name]</td></tr>";
-        echo"<tr><td> Ziel:</td> <td>$daten[ziel_name]</td></tr>";
-        echo"<tr><td> Preis:</td> <td>$daten[preis] €</td></tr>";
-        echo"<tr><td> Personen</td> <td>$daten[personen]</td></tr>";
-        echo"<tr><td> Einstiegsort:</td> <td>$daten[einstiegs_name]</td></tr>";
-        echo"<tr><td> Abfahrtsdatum/zeit:</td> <td>$daten[abfahrtsdatum] $daten[abfahrtszeit]</td></tr>";
-        echo"</table>";
-
-        echo "<strong>Traumreisen Wiesau GmbH</strong>";
-        echo "</div>";
-
+        echo "
+        <button class='btn' style='margin-top:1rem' onclick ='createPDF()'>PDF Herunterladen</button>
+        <div id='print' class='box c-horizontal c-vertical' style='margin-bottom:5rem'>
+          <div class='c-horizontal' style='margin-bottom:.5rem'>
+            <h2>Buchungsbestätigung</h2>
+            <strong>Gebucht am $daten[buchung_datum] um $daten[buchung_zeit]</strong>
+            <p>Buchungsnummer: $daten[buchung_id]</p>
+          </div>
+          <table>
+            <tr><th colspan=3>Persönlichen Daten</th></tr>
+            <tr><td> Kundennummer:</td> <td>$daten[kunde_id]</td></tr>
+            <tr><td> Name:</td> <td>$daten[vorname] $daten[nachname]</td></tr>
+            <tr><td> Straße:</td> <td>$daten[strasse] $daten[hausnummer]</td></tr>
+            <tr><td> Ort:</td> <td>$daten[plz] $daten[ort]</td></tr>
+            <tr><td> Geburtstdatum:</td> <td>$daten[gebdat]</td></tr>
+          </table>
+          <table>
+            <tr><th colspan=3>Reisedaten</th></tr>
+            <tr><td> Land:</td> <td>$daten[land_name]</td></tr>
+            <tr><td> Ziel:</td> <td>$daten[ziel_name]</td></tr>
+            <tr><td> Preis:</td> <td>$daten[preis] €</td></tr>
+            <tr><td> Personen</td> <td>$daten[personen]</td></tr>
+            <tr><td> Einstiegsort:</td> <td>$daten[einstiegs_name]</td></tr>
+            <tr><td> Abfahrtsdatum/zeit:</td> <td>$daten[abfahrtsdatum] $daten[abfahrtszeit]</td></tr>
+          </table>
+          <strong>Traumreisen Wiesau GmbH</strong>
+        </div>";
       ?>
     </main>
     <footer>
@@ -114,18 +116,22 @@
   </body>
 </html>
 <script>
-  // Wandelt HTML Zu PDF um
 function createPDF() {
-  var name = "<?php echo "Buchung-Nr.$buchung_id.php" ?>"
-  // Element mit der ID "print" wird in eine PDF umgewandelt und heruntergeladen
-var element = document.getElementById('print');
-html2pdf()
-    .from(element)
-    // set to png
-    .set ({
-      type: 'webp'
-    })
-    .save(name);
-}
+  // Spechert per PHP die Buchungsnummer in einer Variable
+  var name = "<?php echo "Buchung-Nr.$buchung_id.php" ?>";
 
+  // Holt sich das Element mit der ID print
+  var element = document.getElementById('print');
+
+  // Optionen für das PDF
+  const opt = {
+    format: 'A4',
+    orientation: 'portrait',
+    type: 'webp',
+    html2canvas:  { scale: 2 },
+  }
+
+  // Wandelt das HTML zu PDF um und speichert es
+  html2pdf().from(element).set(opt).save(name);
+}
 </script>

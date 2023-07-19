@@ -297,7 +297,9 @@ main {
 form>* {
   margin: 1rem 0;
 }
-
+#print {
+  margin: 1rem auto;
+}
 /* tooltip (nicht von mir) */
 [tooltip] {
   font-family: var(--ff-body);
