@@ -1,5 +1,7 @@
 -- SQLBook: Code
 
+-- SQLBook: Code
+
 CREATE DATABASE `reiseverwaltung`;
 
 CREATE TABLE `reiseverwaltung`.`kunde` (
@@ -49,12 +51,12 @@ CREATE TABLE `reiseverwaltung`.`buchung` (
   `einstiegs_id` int(40) NOT NULL,
   `zeitstempel` timestamp(6) NOT NULL DEFAULT current_timestamp(6) ON UPDATE current_timestamp(6),
   `personen` int(40) NOT NULL,
+  `status` enum('offen','gebucht','storniert') NOT NULL DEFAULT 'offen',
   PRIMARY KEY (`id`),
   FOREIGN KEY (`kunde_id`) REFERENCES `kunde`(`id`),
   FOREIGN KEY (`ziel_id`) REFERENCES `ziel`(`id`),
   FOREIGN KEY (`einstiegs_id`) REFERENCES `einstiegsort`(`id`)
 );
-
 
 
 CREATE VIEW land_ziel AS

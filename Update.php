@@ -16,6 +16,7 @@ $neu_passwort2 = $_POST['neu_password2'];
 
 $ergebnis = runQuery($db,"SELECT passwort FROM kunde WHERE email = '$_SESSION[user]'");
 $passwort = $ergebnis['passwort'];
+
 if (!empty($alt_passwort)) {
   if (password_verify($alt_passwort, $passwort)) {
     if ($neu_passwort == $neu_passwort2) {
@@ -45,8 +46,8 @@ if ($ergebnis != null) {
     return;
   }
 }
-// update the rest
-runQuery($db, "UPDATE kunde SET vorname = :vorname, nachname = :nachname, strasse = :strasse, hausnummer = :hausnummer, plz = :plz, ort = :ort, gebdat = :gebdat, email = :email WHERE email = :email", [
+// Kunden Daten aktualisieren
+runQuery($db, "UPDATE kunde SET vorname = :vorname, nachname = :nachname, strasse = :strasse, hausnummer = :hausnummer, plz = :plz, ort = :ort, gebdat = :gebdat, email = :email WHERE id = :id", [
   'vorname' => $vorname,
   'nachname' => $nachname,
   'strasse' => $strasse,
@@ -54,10 +55,10 @@ runQuery($db, "UPDATE kunde SET vorname = :vorname, nachname = :nachname, strass
   'plz' => $plz,
   'ort' => $ort,
   'gebdat' => $gebdat,
-  'email' => $email
+  'email' => $email,
+  'id' => $_SESSION['user_id']
 ]);
 
+// Session aktualisieren
 $_SESSION['user'] = $email;
-
-header("Location: Kunde.php");
 ?>

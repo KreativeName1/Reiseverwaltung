@@ -38,7 +38,7 @@
       $_SESSION['freie_plaetze'] = $ziel['freieplaetze'];
       // Ausgabe der Daten
       echo "<h2>$kunde[vorname] $kunde[nachname]</h2>";
-      echo "<p style='margin-bottom: 1rem'>Kundennummer: $kunde[id]</p>";
+      echo "<p class='mb1'>Kundennummer: $kunde[id]</p>";
       echo "<form action='Pruefe.php?ziel=$_SESSION[ziel]' method='post'>";
       echo "
         <table>

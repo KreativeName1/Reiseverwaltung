@@ -68,7 +68,8 @@
         b.zeitstempel,
         b.id as buchung_id,
         z.name as ziel_name,
-        z.preis
+        z.preis,
+        z.dauer
         FROM kunde k
         INNER JOIN buchung b ON b.id = $buchung_id
         INNER JOIN ziel z ON z.id = b.ziel_id
@@ -101,6 +102,7 @@
             <tr><td> Land:</td> <td>$daten[land_name]</td></tr>
             <tr><td> Ziel:</td> <td>$daten[ziel_name]</td></tr>
             <tr><td> Preis:</td> <td>$daten[preis] €</td></tr>
+            <tr><td> Dauer:</td> <td>$daten[dauer] Tage</td></tr>
             <tr><td> Personen</td> <td>$daten[personen]</td></tr>
             <tr><td> Einstiegsort:</td> <td>$daten[einstiegs_name]</td></tr>
             <tr><td> Abfahrtsdatum/zeit:</td> <td>$daten[abfahrtsdatum] $daten[abfahrtszeit]</td></tr>
@@ -126,7 +128,7 @@ function createPDF() {
     orientation: 'portrait',
     type: 'webp',
     html2canvas:  { scale: 5 },
-    filename: '<?php echo "Buchung-Nr.$buchung_id.php" ?>'
+    filename: '<?php echo "Buchung-Nr.$buchung_id.pdf" ?>'
   }
 
   // Wandelt das HTML zu PDF um und speichert es

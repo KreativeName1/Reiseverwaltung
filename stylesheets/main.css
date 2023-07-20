@@ -97,6 +97,7 @@ header {
   padding: 2rem;
   justify-content: space-between;
   align-items: center;
+  z-index: 100;
   & nav {
     gap: 1rem;
     display: flex;
@@ -119,6 +120,7 @@ footer {
 }
 main {
   margin-top: 4rem;
+  padding: 1rem;
 }
 
 /*  Länder Auswahl  */
@@ -313,19 +315,27 @@ form>* {
   left: 50%;
   transform: translate(-50%);
   box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
-
-  & img {
-    height: 2rem;
+}
+.info {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  position: absolute;
+  left: 60%;
+  & >img {
+    height: 1rem
   }
 }
 .close {
-  width: 5rem;
   position: absolute;
   top:1rem;
-  right: 0rem;
+  right: 2rem;
   background-color: transparent;
   border: none;
   cursor: pointer;
+  & >img {
+  height: 2rem;
+  }
 }
 .close:hover {
   opacity: 0.5;
@@ -333,6 +343,25 @@ form>* {
 .mb1
 {
   margin-bottom: 1rem;
+}
+.status {
+  border-radius: 5px;
+  padding: 0rem .5rem;
+  color: var(--light);
+  text-transform: capitalize;
+  font-size: 1rem;
+}
+.offen {
+  border: 1px solid orangered;
+  background-color: rgb(255, 99, 43)
+}
+.storniert {
+  border: 1px solid red;
+  background-color: rgb(191, 23, 23);
+}
+.gebucht {
+  border: 1px solid green;
+  background-color: rgb(33, 129, 33);
 }
 /* tooltip (nicht von mir) */
 [tooltip] {

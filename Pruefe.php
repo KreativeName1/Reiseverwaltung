@@ -48,7 +48,9 @@
       echo"<table>";
       echo"<tr><th colspan=3>Buchungsdaten</th></tr>";
       echo"<tr><td> Land:</td> <td>$ziel[land_name]</td></tr>";
+      echo"<tr><td> Zielort:</td> <td>$ziel[ziel]</td></tr>";
       echo"<tr><td> Personen</td> <td>$_SESSION[personen]</td></tr>";
+      echo"<tr><td> Dauer</td> <td>$ziel[dauer] Tag(e)</td></tr>";
       echo"<tr><td> Einstiegsort:</td> <td>$zielort[name]</td></tr>";
       echo"<tr><td> Abfahrtszeit:</td> <td>$ziel[abfahrtszeit]</td></tr>";
       echo"<tr><td> Einstiegsort:</td> <td>$zielort[name]</td></tr>";
