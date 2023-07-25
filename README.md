@@ -4,9 +4,10 @@ Ein Projekt von:
 - Sascha Dierl
 - Abdulrahman Hassoun
 
-In diesem Projekt kann man sich in der Reiseverwaltung registrieren und einloggen. Als erstet wird das Land ausgesucht und dann das Reiseziel.
-Man kann die Reise buchen und angeben, wie viele Personen mitfahren. Er kann auch angeben, wo er einsteigen möchte.
-Man hat auch die möglichkeit, alle bisherigen und zukünftigen Buchungen anzuschauen.
+In diesem Projekt kann man sich in der Reiseverwaltung registrieren und einloggen. Als erstes wird das Land ausgesucht und dann das Reiseziel.
+Man kann die Reise buchen und angeben, wie viele Personen mitfahren. Man kann auch angeben, wo man einsteigen möchte.
+Man hat auch die Möglichkeit, alle bisherigen und zukünftigen Buchungen anzuschauen
+und die Kundendaten zu ändern.
 
 Verwendete Sprachen:
 - ![HTML](https://img.shields.io/badge/-HTML-000000?style=flat&logo=HTML5)
@@ -22,21 +23,30 @@ Dateistruktur:
 
 ```
 Projekt/
+├─ images/
 ├─ scripts/
-│  ├─ Funktionen.php
+│  ├─ Funktionen.js
 ├─ stylesheets/
 │  ├─ reset.css
 │  ├─ main.css
-├─ Start.php
-├─ images/
+├─ stylesheets/
+│  ├─ reset.css
+│  ├─ main.css
+Ausloggen.php
+Buche.php
 Buchung.php
+BuchungEinfügen.php
 Datenbank.sql
+Funktionen.php
 Kunde.php
-Login.html
+Login.php
 Pruefe.php
-Registrierung.html
+README.md
+Registrierung.php
 Start.php
+Update.php
 Zeige.php
+
 ```
 
 Datenbank:

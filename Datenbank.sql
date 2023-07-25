@@ -58,6 +58,7 @@ CREATE TABLE `reiseverwaltung`.`buchung` (
   FOREIGN KEY (`einstiegs_id`) REFERENCES `einstiegsort`(`id`)
 );
 
+-- ALTER TABLE `reiseverwaltung`.`kunde` ADD `status` enum('offen','gebucht','storniert') NOT NULL DEFAULT 'offen' AFTER `personen`;
 
 CREATE VIEW land_ziel AS
 SELECT land.name as land_name, land.code AS land_code, ziel.name AS ziel, dauer, preis, abfahrtsdatum, abfahrtszeit, freieplaetze, ziel.id as ziel_id
