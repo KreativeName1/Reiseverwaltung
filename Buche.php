@@ -73,8 +73,10 @@
         <p>Anzahl der Personen</p>
         <input type='text' name='personen'>
         </div>
-        </div>
-        <button type='submit' id='submit' class='btn middle'>Weiter</button>
+      </div>
+      <div id='personen'>
+       </div>
+        <button type='submit' disabled id='submit' class='btn middle'>Weiter</button>
       </form>
       <button class="btn back" onclick="history.back()">Zurück</button>
     </main>
@@ -92,16 +94,24 @@
     var personen = document.getElementsByName('personen')[0];
     var freieplaetze = document.getElementsByName('freieplaetze')[0];
     var submit = document.getElementById('submit');
+    var div = document.getElementById('personen');
 
     // Event Listener zum Überprüfen der angegebenen Personenanzahl
     personen.addEventListener('input', function() {
       if (personen.value <= plaetze && personen.value > 0) {
         personen.style.border = "2px solid #4CAF50";
-        submit.disabled = false;
+        div.innerHTML = "";
+        for (var i = 0; i < personen.value; i++) {
+          div.innerHTML += "<div><input class='person' type='text' name='vorname[]' placeholder='Vorname'><input type='text' name='nachname[]' placeholder='Nachname'></div>";
+        }
       }
       else {
         personen.style.border = "2px solid red";
         submit.disabled = true;
+        div.innerHTML = "";
       }
+      });
+      div.array.forEach(element => {
+        
       });
   </script>

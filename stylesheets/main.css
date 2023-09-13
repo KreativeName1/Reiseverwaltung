@@ -203,7 +203,12 @@ main {
 }
 
 /* Sonstiges */
-
+#personen>div {
+  margin: .5rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
 .flex-smallgap {
   gap: .5rem;
   display: flex;
