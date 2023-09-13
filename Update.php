@@ -1,5 +1,4 @@
-<?php
-include 'Funktionen.php';
+<?php include 'Funktionen.php';
 $db = db_oeffnen();
 session_start();
 $vorname = $_POST['vorname'];
@@ -61,4 +60,5 @@ runQuery($db, "UPDATE kunde SET vorname = :vorname, nachname = :nachname, strass
 
 // Session aktualisieren
 $_SESSION['user'] = $email;
-?>
+
+header("Location: Kunde.php");?>

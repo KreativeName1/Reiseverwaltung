@@ -25,7 +25,7 @@
   include 'Funktionen.php';
   $db = db_oeffnen();
   $vergangene = "
-  SELECT b.id, b.kunde_id, b.zeitstempel, b.personen, e.name as einstiegstelle, z.name as ziel, l.name as land, DATE_FORMAT(z.abfahrtsdatum, '%d.%m.%Y') as abfahrtsdatum, TIME_FORMAT(z.abfahrtszeit, '%H:%i') as abfahrtszeit, z.preis
+  SELECT b.id, b.status, b.kunde_id, b.zeitstempel, b.personen, e.name as einstiegstelle, z.name as ziel, l.name as land, DATE_FORMAT(z.abfahrtsdatum, '%d.%m.%Y') as abfahrtsdatum, TIME_FORMAT(z.abfahrtszeit, '%H:%i') as abfahrtszeit, z.preis
   FROM buchung b
   INNER JOIN ziel z ON z.id = b.ziel_id
   INNER JOIN land l ON l.id = z.land_id
