@@ -1,9 +1,12 @@
 # Projekt Reiseverwaltung
+Projekt zum Ende des ersten Ausbildungsjahres Fachinformatiker für Anwendungsentwicklung
+
 Ein Projekt von:
 - Sirac Orak
 - Sascha Dierl
 - Abdulrahman Hassoun
 
+ 
 In diesem Projekt kann man sich in der Reiseverwaltung registrieren und einloggen. Als erstes wird das Land ausgesucht und dann das Reiseziel.
 Man kann die Reise buchen und angeben, wie viele Personen mitfahren. Man kann auch angeben, wo man einsteigen möchte.
 Man hat auch die Möglichkeit, alle bisherigen und zukünftigen Buchungen anzuschauen
