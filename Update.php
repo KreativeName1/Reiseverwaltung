@@ -20,7 +20,7 @@ if (!empty($alt_passwort)) {
   if (password_verify($alt_passwort, $passwort)) {
     if ($neu_passwort == $neu_passwort2) {
       $passwort = password_hash($neu_passwort, PASSWORD_DEFAULT);
-      // update passwort
+      // Passwort aktualisieren
       runQuery($db, "UPDATE kunde SET passwort = :passwort WHERE email = :email", [
         'passwort' => $passwort,
         'email' => $_SESSION['user']
@@ -35,7 +35,7 @@ if (!empty($alt_passwort)) {
     return;
   }
 }
-// test if email is already in use by another user
+// Testen ob E-Mail bereits in Verwendung ist
 $ergebnis = runQuery($db,"SELECT email FROM kunde WHERE email = :email", [
   'email' => $email
 ]);
