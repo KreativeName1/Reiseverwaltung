@@ -12,8 +12,6 @@ function db_oeffnen($dbname = "reiseverwaltung",$benutzername = "root")
 	return $db;
 }
 
-
-// A function to run a query with prepared statements and return the result
 function runQuery($db, $sql, $param = null)
 {
   try
@@ -33,7 +31,6 @@ function runQuery($db, $sql, $param = null)
   return $result;
 }
 
-// make the function above but return all results
 function runQueryAll($db, $sql, $param = null)
 {
   try
