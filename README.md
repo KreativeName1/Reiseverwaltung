@@ -3,7 +3,7 @@ Projekt zum Ende des ersten Ausbildungsjahres Fachinformatiker für Anwendungsen
 
 Ein Projekt von:
 - Sirac Orak
-- Sascha Dierl
+- Sascha Dierl (Hat das meiste gemacht)
 - Abdulrahman Hassoun
 
  
