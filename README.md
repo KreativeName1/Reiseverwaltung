@@ -92,4 +92,18 @@ buchung
 
 ---
 
-### TODO:
+## Screenshots
+![image](https://github.com/KreativeName1/Reiseverwaltung/assets/115576847/6a72cc4a-3f9a-4f75-95ba-02c8ab28d49f)
+![image](https://github.com/KreativeName1/Reiseverwaltung/assets/115576847/ce60c100-f5c1-4acb-ac24-431b68a568a8)
+![image](https://github.com/KreativeName1/Reiseverwaltung/assets/115576847/73622c65-0282-483d-bbb4-a90cf29783b2)
+![image](https://github.com/KreativeName1/Reiseverwaltung/assets/115576847/67d72a23-f9b8-49c3-92fd-35a380d56aec)
+![image](https://github.com/KreativeName1/Reiseverwaltung/assets/115576847/0a8613fa-cd25-4582-ba25-45ceb66d21e1)
+![image](https://github.com/KreativeName1/Reiseverwaltung/assets/115576847/bd6e3654-d5f9-4b57-866b-ea1b6752cc08)
+![image](https://github.com/KreativeName1/Reiseverwaltung/assets/115576847/220c60bf-a0f3-406d-a80a-c82b155e108e)
+
+
+
+
+
+
+
